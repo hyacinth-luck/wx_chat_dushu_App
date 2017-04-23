@@ -1,0 +1,23 @@
+/*bookContents*/
+page{
+    background:#F3E182;
+}
+.list-nav{
+    width:100%;
+    background:#A7DBE5;
+    display: flex;
+    justify-content: space-between;
+    padding:10rpx;
+}
+.return{
+    height:70rpx;
+    line-height:70rpx;
+    background:#fff;
+    color:#292C31;
+}
+.next{
+    height:70rpx;
+    line-height:70rpx;
+    background:#A2E3F2;
+    color:#fff;
+}

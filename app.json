@@ -40,7 +40,13 @@
     "pages/common/popularBooks/popularBooks",
     "pages/common/soundArea/soundArea",
     "pages/common/albumDetails/albumDetails",
-    "pages/common/playDetail/playDetail"
+    "pages/common/playDetail/playDetail",
+
+
+    "pages/public/bookContents/bookContents",
+    "pages/public/bookDetails/bookDetails",
+    "pages/public/bookList/bookList",
+    "pages/public/popularBooks/popularBooks"
 
   ],
   "window":{

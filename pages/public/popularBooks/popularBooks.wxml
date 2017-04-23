@@ -1,0 +1,32 @@
+<!--pages/poblic/popularBooks/popularBooks.wxml-->
+<view class="popularBooks">
+    <view class="classname">
+      <block wx:for="{{freeBooks.records}}" wx:key="{{item}}">
+      <navigator url="../bookDetails/bookDetails?page={{freeBooks.pages}}&id={{item.id}}&bookImg={{item.cover}}&desc={{item.intro}}&size={{freeBooks.size}}&total={{freeBooks.total}}&tag={{item.tags}}&title={{item.name}}&authorName={{item.authorName}}&categoryId={{item.categoryId}}">
+            <view class="big-wrap">
+               <view class="listbook-cove book-cover-label book-cover-label-1">
+                    <image class="book-cover-img" src="{{item.cover}}"></image>
+               </view>
+               <view class="listbook-info">
+                  <view class="classname">
+                        <text class="title">{{item.name}}</text>
+                  </view>
+                  <view class="author_wrap">
+                        <view class="authorinfo">
+                               <text class="author">{{item.authorName}}</text>
+                               <view class="view">
+                                     <image class="views-img" src="../../../images/eye.png"></image>
+                                      <view class="views">{{item.pvCount}}</view>
+                               </view>
+                        </view>
+                  </view>
+                  <view class="book-tag">
+                     <text class="label" style="color:#59D6F2">{{item.finishStatus === 0? '连载' : '完结'}}</text> 
+                     <text class="label items">{{item.tags}}</text>
+                  </view>
+               </view>
+            </view>
+      </navigator>
+      </block>
+    </view>
+</view>

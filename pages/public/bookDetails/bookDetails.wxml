@@ -1,0 +1,55 @@
+<!--bookDetails.wxml-->
+<loading hidden="{{loadingHidden}}">
+        加载中...
+</loading>
+<view class="messae" wx:if="{{message == '系统繁忙，请稍后重试 3'? true:false}}">
+        {{message}}
+</view>
+<view class="cover-content">
+  <!--header-->
+   <view class="cover-header">
+      <view class="cover-header-img">
+           <image class="cover-img" src="{{options.bookImg}}"></image>
+      </view>
+      <view class="cover-header-info">
+            <text class="cover-book-text cover-book-titleg">
+            {{options.title}}
+            </text>
+            <text class="cover-book-text cover-book-authorg">
+            {{options.authorName}}
+            </text>
+            <text class="cover-book-text cover-book-classify-etc">
+               <block  wx:for="{{options.tag}}" wx:key="{{item}}">
+                <text class="label">{{item}}</text>
+                </block>
+            </text>
+            <text class="cover-book-text cover-book-price">
+            {{item.isBuy == false? '正在免费' : '付费阅读'}}
+            </text>
+      </view>
+   </view>
+
+   <view class="select">
+       <navigator url="../bookContents/bookContents?bookId={{books.bookId}}&user_id={{books.uid}}&timestamp={{}}&sign={{}}"><button class="selected select-read">开始阅读</button></navigator>
+       <button class="selected select-download">离线下载</button>
+       <button class="selected select-bookshelf">加书架</button>
+   </view>
+
+
+   <view class="introduction">
+      <p>
+      {{options.desc}}
+      </p>
+   </view>
+
+ 
+  <view class="weui-panel__hd book-lists">
+   <image class="img-label" src="../../../images/biao.png" ></image>目录章节
+   </view>
+
+
+
+        
+  <!--</view>-->
+
+</view>

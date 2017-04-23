@@ -102,6 +102,7 @@
 
 
 <!--免费阅读-->
+<navigator url="../../public/popularBooks/popularBooks?id=399">
 <view class="right-nav">
 
         <view class="navel-mess mn">
@@ -117,7 +118,7 @@
         </block>
         </swiper>
 </view>
-
+</navigator>
 
 <!--喜好推荐-->
 <view class="groom">

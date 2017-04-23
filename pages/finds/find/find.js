@@ -127,6 +127,8 @@ Page({
   },
   onLoad: function () {
     var that=this;
+   
+
     // 获取所有分类列表
     wx.request({
         url: 'http://bookstoreapi.shuqireader.com/eva_bookstore/v1/module/query?appId=1&pageId=1&channelId=&versionId=&ver=&shuqi_h5=&md5key=&userId=8000000&timestamp=1492576266&type=2&resetcache=&func_id=33%2C11%2C33%2C11%2C19%2C33%2C11%2C33%2C11%2C19&orderid=6%2C7%2C8%2C9%2C10%2C11%2C12%2C13%2C14%2C15&sign=60F757437BD11E39CC748BB018F67EF0&key=shuqiapi&_=1492576266653',

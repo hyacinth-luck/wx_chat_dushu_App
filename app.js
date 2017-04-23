@@ -15,7 +15,7 @@ App({
       pageSize: 10
     };
     util.getNewestBooks(params, function (res) {
-      console.log("books %s", JSON.stringify(res));
+      // console.log("books %s", JSON.stringify(res));
     });
 
 

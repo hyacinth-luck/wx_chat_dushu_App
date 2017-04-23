@@ -352,7 +352,22 @@ function getSongInfo(id, mid, callback) {
 }
 
 
-
+// 免费书籍列表
+function freeBook(data, callback){
+  wx.request({
+    url: 'http://localhost/book/list/free',
+    data:data,
+    method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+     header: { 'authToken': getAuthToken() },// 设置请求的 header
+    success: function(res){
+        if(res.statusCode == 200 ){
+          var data = res;
+          callback(data);
+        }
+      // success
+    }
+  })
+}
 
 /**
  * 
@@ -408,5 +423,6 @@ module.exports = {
 
   getNewestBooks:getNewestBooks,
 
-  getAuthToken: getAuthToken
+  getAuthToken: getAuthToken,
+  freeBook:freeBook
 }

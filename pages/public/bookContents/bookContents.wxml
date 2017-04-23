@@ -1,0 +1,15 @@
+
+<view class="content-wrap">
+  <view class="section">
+    <scroll-view scroll-y="true" style="height:{{res.windowHeight-45}}px" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="100">
+        
+    </scroll-view>
+
+</view>
+</view>
+<view class="list-nav">
+    <button class="list-btn return" bindtap="backContensList">返回目录</button>
+    <button class="list-btn next">下一章</button>
+</view>
+
+

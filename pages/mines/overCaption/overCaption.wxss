@@ -1,0 +1,22 @@
+/* pages/mines/overCaption/overCaption.wxss */
+page{
+    padding-left:20rpx;
+}
+.overCap{
+    padding:30rpx 0;
+    border-bottom:1px solid #efefef;
+    font-size:30rpx;
+    padding-right:20rpx;
+    margin-right:20rpx;
+
+
+}
+.title-C{
+    font-weight:900;
+    margin:10rpx 0;
+    display: block;
+}
+.title-Dushu{
+    color:#242131;
+    display: block;
+}

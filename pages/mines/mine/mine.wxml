@@ -1,0 +1,44 @@
+<!--mine.wxml-->
+<loading hidden="{{loadingHidden}}">
+        加载中...
+</loading>
+ <view class="mine-top">
+     <text class="qiandao" bindtap="modalTap">签到</text>
+     <navigator url="../perlnfor/perlnfor"  style="height:60rpx;">
+     <view   bindtap="bindViewTap" class="userinfo-mine">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <text class="userinfo-nickname" bindTap="gainName">{{userInfo.nickName}}</text>
+     </view>
+     </navigator>
+     <navigator url="../config/config" style="height:60rpx;">
+        <image class="config" src="../../../images/shezhi1.png"></image>
+     </navigator>
+ </view>
+ <view class="mine-content">
+     <view class="message-list"  wx:for="{{items}}" wx:for-item="data" >
+       <block wx:for="{{data.datas}}" wx:for-item="item">
+        <navigator url="{{item.url}}">
+        <view class="mine-message" >
+            <image class="message-icon" src="{{item.imageUrl}}"></image>
+            <view class="mine-message-text">{{item.text}}</view>
+            <image class="youjiantou" src="../../../images/youjiantou.png"></image>
+            <!--<view class="message-num" wx:if="{{item.num>0}}">{{item.num}}</view>-->
+            <view class="fenge"  wx:if="{{item.cont>-2}}"></view>
+        </view>
+       </navigator>   
+       </block> 
+     </view>
+ </view>
+ 
+<view class="modal" wx:if="{{modalHidden}}" animation="{{animationData}}" style="background:#fff;">
+       <view class="modal-title">签到成功</view>
+       <view class="modal-content">
+            <image src="../../../images/qiandao.png"></image>
+            <view class="jinbi">金币+30</view>
+            <text class="mon-text">明天签到可领40金币</text>
+       </view>
+       <view class="modal-confirm"  bindtap="modalChange">
+          朕已阅
+       </view>
+</view>
+<view class="zhezhaoceng" wx:if="{{zheHidden}}" bindtap="modalChange"></view>

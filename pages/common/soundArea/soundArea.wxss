@@ -1,0 +1,104 @@
+/* pages/usefuls/soundArea/soundArea.wxss */
+/*popularBooks.wxss*/
+.big-wrap{
+    padding-left:20rpx;
+    padding-top:20rpx;
+    display: -webkit-box;
+    border-bottom: 1px solid #f3f3f3;
+}
+.listbook-cove{
+    margin-right: 50rpx;
+    width: 142rpx;
+    height: 195rpx;
+    position: relative;
+    overflow: hidden;
+    background: url(http://c-shuqi.11222.cn/assets/default-book_8d24e62.jpg);
+    -webkit-background-size: 24rpx 32rpx;
+    background-size: 24rpx 32rpx;
+
+}
+.book-cover-img{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    min-width: 100%;
+    min-height: 100%;
+    height: 100%;
+    border-radius: 5px;
+
+}
+.title{
+    color: #333;
+    font-size: 36rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    margin-bottom: 10rpx;
+    font-weight: 400;
+
+}
+.author_wrap{
+    display: -webkit-box;
+    -webkit-box-align: center;
+    padding-right: 14rpx;
+    position: relative;
+
+}
+.authorinfo{
+    -webkit-box-flex: 1;
+    margin-right: 24rpx;
+    display: -webkit-box;
+    -webkit-box-align: center;
+
+}
+.author{
+    font-size: 28rpx;
+    color: #999;
+    -webkit-box-flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+.view{
+    left: 40rpx;
+    color: #999;
+    font-size: 28rpx;
+    line-height: 28rpx;
+    position: relative;
+    display: inline-block; 
+
+}
+.views{
+    display:inline-block;
+}
+.views-img{
+    width:30rpx;
+    height:26rpx;
+    display:inline-block;
+    margin-right:10rpx;
+    float: left;
+}
+.book-tag{
+    font-size: 24rpx;
+    margin-top:40rpx;
+    line-height: 14rpx;
+
+}
+.book-tag .label{
+    padding:6rpx;
+    border:1px solid #999;
+    color:#999;
+    margin-right:20rpx;
+}
+.book-tag .items{
+     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    width:50rpx;
+}

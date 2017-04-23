@@ -1,0 +1,104 @@
+<loading hidden="{{loadingHidden}}">
+        加载中...
+</loading>
+
+<swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-color="#fff" indicator-active-color="#59D6F2">
+    <block wx:for="{{focusImages.list}}" wx:key="{{item}}">
+        <swiper-item>
+            <image src="{{item.pic}}" style="width:100%; height:100%;"></image>
+        </swiper-item>
+    </block>
+</swiper>
+
+
+<!--图书导航-->
+ <view class="nav-content">
+        <view class="navImg"  wx:for="{{navImg}}" wx:key="{{item}}">
+             <image class="nav-pic" src="{{item.imgUrl}}"></image>
+             <text class="nav-txt" >{{item.imgTit}}</text>
+        </view>
+</view>
+
+<!--有声专区-->
+<view class='content-item'>
+<navigator url="../../common/soundArea/soundArea">
+    <view class="title-item">
+        <image class="img-label" src="../../../images/biao.png" ></image>
+        <label>有声专区</label>
+        <view class="more">更多</view>
+    </view>
+ </navigator>   
+    <view class="list-item">
+        <view class="list-itemcontent" wx:for="{{guess.list}}" wx:key="{{item}}">
+            <navigator url="../detail/detail?id={{item.albumId}}">
+                <view class="image-top"></view>
+                <image style="height:200rpx; width:200rpx" src="{{item.albumCoverUrl290}}"></image>
+            </navigator>
+            <view class="subtitle-top">
+                <text>{{item.nickname}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!--猜你喜欢-->
+<view class='content-item'>
+
+    <view class="title-item">
+        <image class="img-label" src="../../../images/biao.png" ></image>
+        <label>{{guess.title}}</label>
+        <!--<view class="more">更多</view>-->
+    </view>
+  
+
+    <view class="list-item">
+        <view class="list-itemcontent" wx:for="{{guess.list}}" wx:key="{{item}}">
+            <navigator  url="../detail/detail?id={{item.albumId}}">
+                <view class="image-top"></view>
+                <image style="height:200rpx; width:200rpx" src="{{item.albumCoverUrl290}}"></image>
+            </navigator>
+            <view class="subtitle-top">
+                <text>{{item.nickname}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+<!--小编推荐-->
+<view class='content-item'>
+    <view class="title-item">
+        <image class="img-label" src="../../../images/biao.png"></image>
+        <label>{{editorRecommendAlbums.title}}</label>
+        <!--<view class="more">更多</view>-->
+    </view>
+
+    <view class="list-item">
+        <view class="list-itemcontent" wx:for="{{editorRecommendAlbums.list}}" wx:key="{{item}}">
+            <navigator url="../detail/detail?id={{item.albumId}}">
+            <view class="image-top"></view>
+                <image style="height:200rpx; width:200rpx" src="{{item.albumCoverUrl290}}"></image>
+            </navigator>
+            <view class="subtitle-top">
+                <text>{{item.nickname}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+<!--听上海-->
+<view class='content-item'>
+    <view class="title-item">
+        <image class="img-label" src="../../../images/biao.png"></image>
+        <label>{{cityColumn.title}}</label>
+          <!--<view class="more">更多</view>-->
+    </view>
+    <view class="list-item">
+        <view class="list-itemcontent" wx:for="{{cityColumn.list}}" wx:key="{{item}}">
+            <navigator url="../detail/detail?id={{item.albumId}}">
+            <view class="image-top"></view>
+                <image style="height:200rpx; width:200rpx" src="{{item.albumCoverUrl290}}"></image>
+            </navigator>
+            <view class="subtitle-top">
+                <text>{{item.nickname}}</text>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,37 @@
+<!--popularBooks.wxml-->
+
+<view class="popularBooks">
+    <view class="classname">
+      <block wx:for="{{bookInfo}}" wx:key="{{item}}">
+      <navigator url="../bookDetails/bookDetails?page={{info.page}}&id={{item.bookid}}&authorId={{item.authorid}}&bookImg={{item.cover}}&desc={{item.desc}}&size={{info.size}}&total={{info.total}}&tag={{item.tags}}">
+            <view class="big-wrap">
+               <view class="listbook-cove book-cover-label book-cover-label-1">
+                    <image class="book-cover-img" src="{{item.cover}}"></image>
+               </view>
+               <view class="listbook-info">
+                  <view class="classname">
+                        <text class="title">{{item.title}}</text>
+                  </view>
+                  <view class="author_wrap">
+                        <view class="authorinfo">
+                               <text class="author">{{item.author}}</text>
+                               <view class="view">
+                                     <image class="views-img" src="../../../images/eye.png"></image>
+                                      <view class="views">{{item.reads}}</view>
+                               </view>
+                        </view>
+                  </view>
+                  <view class="book-tag">
+                  <!--<navigator url="../bookDetails/bookDetails?id={{item.bookid}}">-->
+                     <text class="label" style="color:#59D6F2">{{item.status === 0? '连载' : '完结'}}</text> 
+                     <!--</navigator>-->
+                     <text class="label">{{item.words}}万字</text>
+                     <text class="label items">{{item.tags}}</text>
+                     <text class="label items">{{item.category}}</text>
+                  </view>
+               </view>
+            </view>
+      </navigator>
+      </block>
+    </view>
+</view>

@@ -1,0 +1,86 @@
+{
+  "pages":[
+     "pages/finds/find/find",
+    
+    "pages/bookcases/create/create",
+    "pages/index/index",
+      
+
+    "pages/bookcases/bookcase/bookcase",
+    "pages/bookcases/create/create",
+    "pages/bookcases/bookDetails/bookDetails",
+    "pages/bookcases/bookContents/bookContents",
+    "pages/bookcases/bookList/bookList",
+
+    "pages/finds/find/find",
+    "pages/finds/systematics/systematics",
+    "pages/finds/ranking/ranking",
+    "pages/finds/girl/girl",
+    "pages/finds/boy/boy",
+    "pages/finds/bookList/bookList",
+
+    "pages/usefuls/useful/useful",
+    "pages/usefuls/detail/detail",
+
+
+    "pages/mines/mine/mine",
+    "pages/mines/config/config",
+    "pages/mines/perlnfor/perlnfor",
+    "pages/mines/aboutme/aboutme",
+    "pages/mines/user/user",
+    "pages/mines/interest/interest",
+    "pages/mines/account/account",
+    "pages/mines/overCaption/overCaption",
+    "pages/mines/service/service",
+
+
+    "pages/common/bookContents/bookContents",
+    "pages/common/bookDetails/bookDetails",
+    "pages/common/bookList/bookList",
+    "pages/common/popularBooks/popularBooks",
+    "pages/common/soundArea/soundArea",
+    "pages/common/albumDetails/albumDetails",
+    "pages/common/playDetail/playDetail"
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#A2E3F2",
+    "navigationBarTitleText": "独书",
+    "navigationBarTextStyle":"white",
+    "backgroundColor":"#F0EBD5"
+  },
+  "tabBar":{
+    "list":[
+             {
+              "pagePath": "pages/bookcases/bookcase/bookcase",
+              "iconPath":"images/shujia1.png",
+              "selectedIconPath":"images/shujia.png",
+              "text":"书架"
+              },
+             {
+              "pagePath": "pages/finds/find/find",
+              "iconPath":"images/faxian1.png",
+              "selectedIconPath":"images/faxian.png",
+              "text":"发现"
+              },
+              {
+              "pagePath": "pages/usefuls/useful/useful",
+              "iconPath":"images/jingxuan1.png",
+              "selectedIconPath":"images/jingxuan.png",
+              "text":"精选"
+              },
+              {
+              "pagePath": "pages/mines/mine/mine",
+              "iconPath":"images/mine1.png",
+              "selectedIconPath":"images/wode.png",
+              "text":"个人中心"
+              }
+      ],
+    "position":"bottom",
+    "borderStyle": "black",
+    "backgroundColor":"#AAE5F2",
+    "selectedColor":"#12B4DB",
+    "color":"#8e8e8e"
+  }
+}

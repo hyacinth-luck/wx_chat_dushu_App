@@ -1,0 +1,47 @@
+page{
+    font-size:30rpx;
+    padding-bottom:122rpx;
+}
+view{
+    padding-left:50rpx;
+    padding-right:50rpx;
+}
+.read{
+  text-align: left;
+    font-size: 28rpx;
+    text-indent: 7mm;
+    margin-top: 12rpx;
+    font-family: 宋体;
+    font-weight: bold;
+}
+.shuoming{
+    text-indent: 7mm;
+    font-size: 28rpx;
+    line-height: 52rpx;
+    margin-top: 30rpx;
+}
+.spans{
+    text-indent: 10mm;
+    display: block;
+    margin-top: 20rpx;
+}
+.lianjie{
+    display: block;
+    color: #666;
+    margin-left:50rpx;
+    margin-right:50rpx;
+    line-height: 46rpx;
+}
+.spansed{
+    text-indent: 20mm;
+    line-height: 52rpx;
+    display: block;
+    margin-top: 20rpx;
+}
+.fu{
+    margin-top:50rpx;
+    margin-bottom: 20rpx;
+}
+.other-navigator-hover{
+    color:#59D6F2;
+}

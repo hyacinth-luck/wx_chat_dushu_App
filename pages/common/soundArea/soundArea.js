@@ -1,0 +1,2 @@
+// soundArea.js
+Page({})

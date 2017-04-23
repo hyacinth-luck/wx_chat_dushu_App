@@ -1,0 +1,3 @@
+<!--pages/mines/service/service.wxml-->
+<view bindtap="call" style="text-align:center;margin-top:20rpx">拨打客服电话 ：<text  style="color:#A2E3F2">13520969306</text></view>
+

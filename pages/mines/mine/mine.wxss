@@ -1,0 +1,158 @@
+/*mine.wxss*/
+.mine-top{
+  width:100%;
+  height:270rpx;
+  background:url("http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg") center no-repeat fixed;
+  background-size:cover;
+  display: flex;
+  flex-direction:row;
+  justify-content: space-around;
+  color:#fff;
+  padding-top:40rpx;
+}
+.qiandao{
+  /*border:1px solid #fff;*/
+  border-radius:30rpx;
+  font-size:30rpx;
+  padding: 5px;
+  height: 30rpx;
+}
+.userinfo-mine{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userinfo-avatar {
+  width: 90rpx;
+  height: 90rpx;
+  margin:20rpx;
+  border:2px solid #fff;
+  border-radius: 50%;
+}
+.config{
+  width:60rpx;
+  height:60rpx;
+  color:#fff;
+}
+.userinfo-nickname{
+  font-size: 30rpx;
+}
+
+/*content--------------------------------------------------*/
+.mine-content{
+  width: 100%;
+  height:100%;
+  background: #F8F8F8;
+  padding:20rpx 0;
+}
+.message-list{
+  background: #fff;
+  padding:0 20rpx;
+  color:#434852;
+}
+.mine-message{
+  width:100%;
+  height:112rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+.mine-message .message-icon{
+  width:60rpx;
+  height:60rpx;
+  float:left;
+  margin-top:32rpx;
+}
+.mine-message-text{
+  float:left;
+  font-size:28rpx;
+  margin-top:48rpx;
+  margin-left:20rpx;
+}
+.message-num{
+  float:right;
+  width:30rpx;
+  height:30rpx;
+  border-radius:50%;
+  color:#fff;
+  text-align:center;
+  line-height:30rpx;
+  margin-top:52rpx;
+  margin-right:20rpx;
+  font-size:20rpx;
+  background:#ff5358;
+}
+.youjiantou{
+  width:25rpx;
+  height:25rpx;
+  float:right;
+  margin-top:48rpx;
+}
+.fenge{
+  width:95%;
+  height:4rpx;
+  background:#f3ecec;
+  margin-left:80rpx;
+}
+
+/*签到框----------------------------------*/
+
+.modal-title{
+  width:100%;
+  height:100rpx;
+  background: #a3ea0a;
+  color:#fff;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 40rpx;
+  border-radius:5px;
+  position: relative;
+  z-index: 100000;
+}
+.modal-content{
+  text-align: center;
+}
+.modal-title:before{
+  position: absolute;
+  display: block;
+  content: "";
+  border:50rpx solid #94d210;
+  border-left-color: transparent;
+  top:30rpx;
+  left:-100rpx;
+  z-index: 100;
+}
+.modal-title:after{
+  position: absolute;
+  display: block;
+  content: "";
+  border:50rpx solid #94d210;
+  border-right-color: transparent;
+  top:30rpx;
+  right:-100rpx;
+  z-index: 100;
+}
+.modal image{
+  width:200rpx;
+  height:100rpx;
+  margin:20rpx 0;
+}
+.jinbi{
+  color:#fdb64a;
+  font-size:24rpx;
+}
+.mon-text{
+  font-size:24rpx;
+  color:#bdbdbd;
+}
+.modal-confirm{
+  width:60%;
+  height:68rpx;
+  line-height: 68rpx;
+  background: #39bef8;
+  font-size:28rpx;
+  color: #fff;
+  text-align: center;
+  border-radius:10px;
+  margin:20rpx auto;
+
+}

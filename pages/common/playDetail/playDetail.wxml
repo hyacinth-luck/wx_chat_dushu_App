@@ -1,0 +1,94 @@
+<!--pages/common/playDetail/playDetail.wxml-->
+<view class="noval-wrap">
+    <view class="noval-main">
+
+        <!-- 歌曲信息-->
+        <!--小说章节信息-->
+        <view class="noval-info">
+            <!--<image class="avatar-img" src="{{novalImg}}"></image>-->
+             <image class="avatar-img" src="https://gss0.baidu.com/7LsWdDW5_xN3otqbppnN2DJv/doc/abpic/item/a8014c086e061d954024cf7272f40ad162d9ca1e.jpg"></image>
+            <view class="noval-info__con">
+
+                <!-- 歌名 -->
+                <!--小说章节名称-->
+                <scroll-view class="noval-name" scroll-x="true" style="width: 100%">
+                    <view>第一章   你是我的人{{playnoval.title}}</view>
+                </scroll-view>
+                <view class="singer-name">
+                    <text class="singer-name__text" wx:for="{{playnoval.singer}}" wx:key="unique">{{item.name}}</text>
+                </view>
+            </view>
+            <view class="play {{isPlaying ? '' : 'pause'}}" bindtap="novalToggle"></view>
+        </view>
+
+        <!-- 歌词 -->
+        <!--小说章节的内容-->
+        <view class="noval-lyric" style="height:{{lyricSwiperH}}px;">
+            <swiper class="noval-lyric__swiper" indicator-dots="{{false}}" autoplay="{{false}}" duration="500" bindchange="swiperChange"
+                style="height:{{lyricSwiperH}}px;">
+
+                <!-- 歌词展示 -->
+                <!--小说内容展示-->
+                <swiper-item class="swiper-item">
+                    <scroll-view scroll-y="true" style="height: 100%;" scroll-top="{{scrollTop}}" bindscroll="scrollHandle">
+                        <view class="lyric-item" wx:for="{{lyric}}" wx:for-item="word" wx:key="unique">
+                            <text wx:if="{{word.length>0}}">
+                                {{word}}
+                            </text>
+                        </view>
+                        <view class="lyric-item" wx:if="{{lyric.length<0}}">
+                            <!--<text>歌词努力加载中~~~~~ </text>-->
+                            <text>小说内容努力加载中~~~~~ </text>
+                        </view>
+                    </scroll-view>
+                </swiper-item>
+
+                <!-- 播放队列 -->
+                <!--章节队列-->
+                <swiper-item class="swiper-item" wx:if="{{hasnovallists}}">
+                    <scroll-view scroll-y="true" style="height: 100%;" scroll-top="{{selectedIndex*45}}">
+                        <view class="novallists-tit">
+                            章节播放队列
+                            <text class="novallists-count">({{novallists.length}}首)</text>
+                        </view>
+                        <view class="novallists-item {{index==selectedIndex?'novallists-item__current':''}}" wx:for="{{novallists}}" wx:key="unique"
+                            wx:for-item="noval" data-index="{{index}}" bindtap="changenoval">
+                            <text class="play-list__noval">{{noval.title}}</text>
+                            <text class="play-list__line">-</text>
+                            <view class="play-list__singer">
+                                <text wx:for="{{noval.singer}}" wx:for-item="singer" wx:key="unique">{{singer.name}}</text>
+                            </view>
+                            <view class="ani_playing" wx:if="{{index==selectedIndex}}">
+                                <text></text>
+                                <text></text>
+                                <text></text>
+                                <text></text>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </swiper-item>
+            </swiper>
+
+            <!-- 小圆点-->
+            <view class="swipe-btn-wrapper" wx:if="{{hasnovallists}}">
+                <view class="swipe-btn-list">
+                    <view class="{{dotsClass[0]}}"></view>
+                    <view class="{{dotsClass[1]}}"></view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 控制条 -->
+        <view class="noval-control">
+            <view class="progress">
+                <text class="time-start">{{novalState.currentPosition}}</text>
+                <view class="time-bar">
+                    <view class="time-play" style="transform: translateX({{novalState.progress}}%)"></view>
+                </view>
+                <text class="time-total">{{novalState.duration}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="noval-bg" style="background-image:url({{novalImg}})">
+    </view>
+</view>

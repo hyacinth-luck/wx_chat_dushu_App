@@ -1,0 +1,39 @@
+<!--index.wxml-->
+<swiper indicator-dots="{{indicatorDots}}"
+  duration="{{duration}}" circular="{{circular}}" indicator-active-color="{{color}}" style="height:{{res.windowHeight}}px">
+          <!--<swiper-item>
+                  <view class="container" id="index" width="200">
+                  <view  bindtap="bindViewTap" class="userinfo">
+                        <image class="userinfo-avatar" src="../../images/dushu.png"   background-size="contain"></image>
+                        <text class="userinfo-nickname" >欢迎来到独书</text>
+                  </view>
+                  </view>
+
+                  <image class="indexbackimg" src="../../images/backgroundimg.png" ></image>
+                  <view class="zhe"></view>
+          </swiper-item> -->
+          <swiper-item class="item1">
+                <view class="container-img">
+                      <image src="../../images/img1.png"></image>
+                      <view class="color1">软件加锁功能</view>
+                      <view class="color1">保护隐私安全</view>
+                </view>
+          </swiper-item> 
+           <swiper-item class="item2">
+                <view class="container-img">
+                      <image src="../../images/img2.png"></image>
+                      <view class="color2">倾听收藏语录</view>
+                      <view class="color2">打造专属空间</view>
+                </view>
+          </swiper-item> 
+          <swiper-item class="item1">
+                <view class="container-img">
+                    <image src="../../images/img3.png"></image>
+                    <view class="color3">签到送金币</view>
+                    <view class="color3">签到无压力</view>
+                    <navigator url="../bookcases/bookcase/bookcase" open-type="switchTab">
+                          <view class="tiyan">立即体验</view>
+                    </navigator>
+                </view>
+          </swiper-item>
+</swiper>

@@ -1,0 +1,62 @@
+ <!--bookList.wxml-->
+ <view class="bookList">
+     <view class="header-nav">
+        <text class="list-label">1-{{chapterList.length}}章</text>
+        <image class="list-img" src="../../../images/mulv.png"></image>
+     </view>
+ <scroll-view scroll-y="true" style="height:{{chapterListHeight}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+   <block wx:for="{{chapterList}}">
+    <view class="book-lists">
+  
+        <view class="list-navs">
+        <navigator url="../bookContents/bookContents?bookid={{chapter.bookId}}&chapterId={{item.chapterId}}&chapterOrdid={{item.chapterOrdid}}">
+              <text class="list-number">{{item.chapterName}}</text>
+              <text class="list-title"></text>
+         </navigator>      
+              <text bindtap="spend"  data-status="{{item.payStatus}}" data-freeRead="{{item.isFreeRead}}" data-price="{{item.chapterPrice}}" class="fufei {{item.isFreeRead==true?'':'active'}}">{{item.isFreeRead==true?"免费":"请购买"}}</text>
+        </view>
+     
+     </view>
+     </block>
+   
+  </scroll-view>
+
+
+    
+ </view>
+
+
+<!--提示付款框-->
+ <action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetbindchange">
+    <!--<block wx:for-items="{{actionSheetItems}}">-->
+        <action-sheet-item bindtap="bind{{item.bindtap}}">购买全本</action-sheet-item>
+        <action-sheet-item bindtap="bind{{item.bindtap}}">
+            <image class="bookImg" src="../../../images/beijing1.png"></image>
+            <text class="bookName">本章节
+                <text class="label-price">{{price}}元</text>
+            </text>
+        </action-sheet-item>
+        <action-sheet-item bindtap="bind{{item.bindtap}}">
+         <text class="vouchers">代金券</text>
+         <text class="vouchers-1">无可用</text>
+         <text class="voucher-2">未使用</text>
+        </action-sheet-item>
+        <action-sheet-item bindtap="bind{{item.bindtap}}">
+         <text class="vouchers">账户余额</text>
+         <text class="voucher-2 voucher-3">0.0书豆</text>
+        </action-sheet-item>
+    <!--</block>-->
+     <action-sheet-cancel class="cancel">
+         <view class="cancel-tatle">
+           <text>合计 ： </text> 
+            <text class="cancel-tatle-p">
+            10书豆
+            </text>
+         </view>
+         <view class="cancel-tatle-c">
+            <text class="cancel-tatle-d" bindtap="reacarge">
+            充值并购买
+            </text>
+         </view>
+     </action-sheet-cancel>
+</action-sheet>

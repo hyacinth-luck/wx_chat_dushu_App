@@ -1,0 +1,40 @@
+<!--pages/mines/account/account.wxml-->
+<view class="page-wrap">
+    <view class="account">
+        <view class="caption">
+            <text class="left-label">当前余额</text>
+            <view class="right-label" bindtap="overCaption">
+                <text  class="label-w">?</text>
+            余额说明</view>
+            
+        </view>
+        <view class="over">
+
+            0.00元
+        </view>
+        <button style="display:block;width:90%;" bindtap="spend">充值 </button>
+        
+
+    </view>
+</view>
+<modal hidden="{{hidden}}" title="输入交易密码" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}">
+   <view class="pwd-p">
+       <text class="pew-bao">发红包</text>
+       <text class="pew-bao-c">￥ 12.00元</text>
+   </view>
+   <view class="pwd-p bank">
+       <text class="yinhang">农业银行</text>
+   </view>
+   <view class="pwd-box">
+	<input type="tel" maxlength="6" class="pwd-input" id="pwd-input"/>
+	<view class="fake-box" bindinput="change">
+		<input type="password" readonly=""/>
+		<input type="password" readonly=""/>
+		<input type="password" readonly=""/>
+		<input type="password" readonly=""/>
+		<input type="password" readonly=""/>
+		<input type="password" readonly=""/>
+	</view>
+</view>
+</modal>
+<!--<input class="recharge" hidden="{{hidden}}"  type="number" value="充值"/> -->

@@ -1,0 +1,19 @@
+<image src="../../../images/dushu2.png" class="info-img"></image>
+<form>
+     <input class="text-ime" type="text" placeholder="请输入手机号"/>
+     <input class="text-ime" type="text" placeholder="请输入密码"/>
+     <button class="btn">登录</button>
+     <view class="login-ing">
+        <view bindtap="register">快速注册</view>
+        <view>忘记密码</view>
+     </view>
+</form>
+
+  <image class="zuo-img" src="../../../images/zuo-img.png"></image>
+  <text style="color:#C6C6C6;">微信登录</text>
+  <image class="you-img" src="../../../images/you-img.png"></image>
+  <view class="disanfang" bindtap>
+      <!--<image style="width:50rpx;height:48rpx;" src="../../../images/qq.png"></image>-->
+      <image style="width:66rpx;height:50rpx;" bindTap="weixin" src="../../../images/weichat.png"></image>
+      <!--<image style="width:52rpx;height:46rpx;" src="../../../images/xinlang.png"></image>-->
+  </view>

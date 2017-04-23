@@ -1,0 +1,44 @@
+<!--pages/usefuls/soundArea/soundArea.wxml-->
+
+
+
+<view class="popularBooks">
+    <view class="classname">
+      <!--<block wx:for="{{bookInfo}}" wx:key="{{item}}" >-->
+      <navigator url="../albumDetails/albumDetails?id={{item.bookid}}">
+            <view class="big-wrap">
+               <view class="listbook-cove book-cover-label book-cover-label-1">
+                    <!--<image class="book-cover-img" src="{{item.cover}}"></image>-->
+                     <image class="book-cover-img" src="../../../images/1.jpg"></image>
+               </view>
+               <view class="listbook-info">
+                  <view class="classname">
+                        <text class="title">有声阅读{{item.title}}</text>
+                  </view>
+                  <view class="author_wrap">
+                        <view class="authorinfo">
+                               <text class="author">花花{{item.author}}</text>
+                        </view>
+                  </view>
+                   <view class="author_wrap">
+                        <view class="authorinfo">
+                              <view class="playIcon"></view>
+                              
+                              <view class="view">1213{{item.reads}}</view>
+                        </view>
+                  </view>
+
+                  <view class="book-tag">
+                  <!--<navigator url="../bookDetails/bookDetails?id={{item.bookid}}">-->
+                     <!--<text class="label" style="color:#59D6F2">连载{{item.status === 0? '连载' : '完结'}}</text> -->
+                     <!--</navigator>-->
+                     <!--<text class="label">12{{item.words}}万字</text>
+                     <text class="label items">花火{{item.tags}}</text>
+                     <text class="label items">得得{{item.category}}</text>-->
+                  </view>
+               </view>
+            </view>
+      </navigator>
+      <!--</block>-->
+    </view>
+</view>

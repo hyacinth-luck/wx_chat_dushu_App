@@ -1,0 +1,9 @@
+<!--pages/mines/overCaption/overCaption.wxml-->
+
+<view class="overCap">
+    <text class="title-C">温馨提示</text>
+    <text class="title-Dushu">1 、充值比例为1元=10书豆;</text>
+    <text class="title-Dushu">2 、有候可能充值会发生充值失败等问题，请您耐心等候，或者反馈给客服;</text>
+    <text class="title-Dushu">3 、独书网站余额可以使用微信充值，支付宝充值等;</text>
+    <text class="title-Dushu">4 、感谢您的信任。</text>
+</view>

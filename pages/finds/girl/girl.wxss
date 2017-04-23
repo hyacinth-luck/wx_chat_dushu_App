@@ -1,0 +1,41 @@
+/*systematics.wxss*/
+
+.girl-title{
+    padding-left:20rpx;
+    height:50rpx;
+    line-height:50rpx;
+    font-size:30rpx;
+    background:#F8F8F8;
+
+}
+
+.girl-data{
+  padding:30rpx 0 30rpx 20rpx;
+  background:#fff;
+  border-bottom:1px solid #efefef;
+
+}
+.girl-icon{
+    display: inline-block;
+    width:80rpx;
+    height:80rpx;
+    margin-right:10rpx;
+    float:left;
+}
+.girl-label{
+   display: inline-block;
+   font-size:30rpx;
+}
+.girl-label-title{
+    display: block;
+}
+.girl-label-list{
+    line-height:20rpx;
+    font-size:25rpx;
+    color:#999;
+}
+.girl-label-list-item{
+    display: inline-block;
+    padding:5rpx 10rpx;
+    border-right:1px solid #999;
+}

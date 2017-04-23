@@ -1,0 +1,19 @@
+<view class="containter">
+<block wx:for="{{items}}">
+  <navigator url="{{item.url}}">
+    <view class="config">
+    
+        <image class="config-icon" src="{{item.imgUrl}}"></image>
+        <view class="title">{{item.title}}</view>
+         
+              <image class="jiantou" wx:if="{{item.more}}" src="../../../images/youjiantou.png"></image>
+          
+        <view class="switch-view" wx:if="{{item.count==2}}">
+            <switch checked bindchange="switchChange"/>
+        </view>
+       
+    </view>
+     </navigator>
+</block>     
+    <!--<view class="btn">退出登录</view>-->
+</view>

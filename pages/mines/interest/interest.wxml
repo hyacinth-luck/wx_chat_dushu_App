@@ -1,0 +1,23 @@
+
+
+<view class="navbar">
+  <text class="item {{currentTab==index ? 'active' : ''}}" wx:for="{{navbar}}" wx:key="{{index}}" data-index="{{index}}" bindtap="onNavbarTap">{{item}}</text>
+</view>
+
+
+
+<view class="inter-text" style="color:#1AB2ED;font-size:70rpx">选择你喜爱的类型</view>
+<view class="inter-text" style="color:#67C1E5;font-size:44rpx">至少选择三种哦</view>
+<view class="inteParent">
+      <block wx:for="{{items}}" wx:for-index="idx">
+      <view  bindtap="touchstar" class="inter" data-index="{{border[idx]}}" style="height:{{item.height}}rpx;width:{{item.width}}rpx;left:{{item.left}}rpx;top:{{item.top}}rpx;background:{{item.color}};line-height:{{item.height}}rpx; border:{{border[idx]==1?borderStyle:0}}" id="{{idx}}" animation="{{arr[idx]==1?animationData:''}}">{{item.text}}
+      </view>
+      </block> 
+ 
+ </view>
+ <navigator url="../../bookcases/bookcase/bookcase" open-type="switchTab">
+       <button style="left:10%" >稍后再选</button>
+ </navigator>
+ 
+ <button style="color:#fff;right:10%;" wx:if="{{hidden}}" bindtap="ok">选好了</button>
+ <button style="color:#fff;right:10%;"  wx:if="{{shows}}" bindtap="all">全部喜欢</button>

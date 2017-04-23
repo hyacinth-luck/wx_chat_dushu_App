@@ -1,0 +1,19 @@
+<!--ranking.wxml-->
+<!--<view class="messae" wx:if="{{message == '系统繁忙，请稍后重试 3'? true:false}}">
+        {{message}}
+</view>-->
+
+
+<view class="ranking">
+   <view class="ranking-nav">
+      <image class="ranking-img" src="../../../images/note.png"></image>
+      <view class="ranking-title">
+          <text class="ranking-label">精品畅销榜</text>
+          <text  class="ranking-txt">全站最畅销，内容丰富超有料</text>
+      </view>
+   </view>
+</view>
+
+
+
+

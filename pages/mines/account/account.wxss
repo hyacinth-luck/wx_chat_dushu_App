@@ -1,0 +1,122 @@
+/* pages/mines/account/account.wxss */
+.page-wrap{
+    background:#59D6F2;
+    padding-bottom:20rpx;
+    padding-left:10rpx;
+}
+.account{
+   display: flex;
+   flex-flow: column nowrap;
+   justify-content: space-between;
+   background:#fff;
+   border-radius:5px;
+   margin-right:10rpx;
+   padding-bottom:20rpx;
+}
+.caption{
+    display: flex;
+   flex-flow: row nowrap;
+   justify-content: space-between;
+   color:#999;
+   font-size:25rpx;
+   padding:10rpx 30rpx;
+
+}
+.label-w{
+    padding:2rpx 8rpx;
+    border:1px solid #999;
+    border-radius:50%;
+}
+.over{
+    padding-left:30rpx;
+    margin:20rpx 0;
+
+}
+.recharge{
+    width:90%;
+    height:40rpx;
+    line-height:40rpx;
+    color:#59D6F2;
+    border:1px solid #CECED3;
+    border-radius:5px;
+    text-align:center;
+    font-size:30rpx;
+    margin:0 30rpx;
+    display: block;
+    padding:20rpx 0;
+    background:#efefef;
+}
+
+
+
+.pwd-box{
+		width:100%;
+ 
+		padding-left: 1px;
+	    position: relative;
+	    border: 1px solid #9f9fa0;
+	    border-radius: 3px;
+        height:90rpx;
+
+}
+.pwd-box input[type="tel"]{
+    width: 99%;
+    height: 45rpx;
+    color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    font-size: 18rpx;
+    opacity: 0;
+    z-index: 1;
+    letter-spacing: 35rpx;
+}
+.fake-box{
+    overflow:hidden;
+}
+.fake-box input{
+    width:16.3%;
+    height:90rpx;
+    border: none;
+    border-right: 1px solid #e5e5e5;
+    text-align: center;
+    font-size: 30rpx;
+}
+.fake-box input:nth-last-child(1){
+    border:none;
+}
+
+.fake-box wx-input{
+        float: left;
+}
+
+.pwd-p{
+    border-bottom:1px solid #efefef;
+    text-align:center;
+}
+.pwd-p>text{
+    display: block;
+}
+.pew-bao{
+    font-size:25rpx;
+    color:#000;
+
+}
+.pew-bao-c{
+    font-size:40rpx;
+    font-weight: 900;
+    color:#000;
+
+}
+.bank{
+    color:#000;
+    font-size:40rpx;
+    margin-bottom: 40rpx;
+
+
+}
+.yinhang{
+    padding:20rpx 0;
+
+}

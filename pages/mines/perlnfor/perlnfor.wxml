@@ -1,0 +1,10 @@
+<view class="containter" id="message">
+      <view class="message"  wx:for="{{items}}">
+         <image class="perimg" src="{{item.imgUrl}}"></image>
+         <view class="title">{{item.title}}</view>
+         <image class="messageM" wx:if="{{item.cont=='1'}}" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+         <view class="userName" wx:if="{{item.cont=='2'}}">{{userInfo.nickName}}</view>
+         <view class="address" wx:if="{{item.cont=='3'}}">{{userInfo.country}}    {{userInfo.province}}</view>
+         <view class="sex" wx:if="{{item.cont=='4'}}">{{userInfo.gender === 1 ? '男' : '女'}}</view>
+      </view>
+</view>

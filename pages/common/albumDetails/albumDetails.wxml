@@ -1,0 +1,101 @@
+<!--pages/usefuls/albumDetails/albumDetails.wxml-->
+<!--bookDetails.wxml-->
+<!--<loading hidden="{{loadingHidden}}">
+        加载中...
+</loading>-->
+<!--<view class="messae" wx:if="{{message == '系统繁忙，请稍后重试 3'? true:false}}">
+        {{message}}
+</view>-->
+<view class="cover-content">
+  <!--header-->
+  <!--<block wx:for="{{books}}" wx:key="{{item}}">-->
+   <view class="cover-header">
+      <view class="cover-header-img">
+          <image class="cover-img" src="http://img-tailor.11222.cn/bcv/big/201612191403117373.jpg"></image>
+      </view>
+      <view class="cover-header-info">
+            <text class="cover-book-text cover-book-titleg">
+            <!--{{item.bookName}}-->
+            乡村潜龙小神医
+            </text>
+            <text class="cover-book-text cover-book-authorg">
+            <!--{{item.authorName}}-->
+            木瓜
+            </text>
+            <text class="cover-book-text cover-book-classify-etc">
+               <!--<block  wx:for="{{item.tag}}" wx:key="{{item}}">-->
+                <!--<text class="label">{{item.tagName}}</text>-->
+                <!--</block>-->
+                <text class="label">都市异能</text>
+                <text class="label">56万字</text>
+                <text class="label">连载</text>
+            </text>
+            <text class="cover-book-text cover-book-price">
+            <!--{{item.isBuy == false? '正在免费' : '请付费'}}-->
+            正在免费
+            </text>
+      </view>
+   </view>
+
+
+   <view class="select">
+       <button class="selected select-download">离线下载</button>
+       <button class="selected select-bookshelf">加书架</button>
+   </view>
+
+
+   <!--<view class="introduction">
+      <p>
+      {{item.desc}}
+         乡村小子，纵横医道，依靠神奇能力，帮助乡亲们治疗疾病，闲时泡泡妹子，搞搞情趣，忙时拼命干活，拼命治病。人生要求并不高，做个当代韦小宝，顺便做个当代孙思邈。不求醒掌天下权，只求醉卧美人膝。如此，人生快哉！
+      </p>
+   </view>-->
+
+
+  
+
+ <!--</block> -->
+
+</view>
+<view class="program-wrap">
+<view class="navbar">
+    <text class="item {{currentTab==index ? 'active' : ''}}" wx:for="{{navbar}}" wx:key="{{index}}" data-index="{{index}}" bindtap="onNavbarTap">{{item}}</text>
+ </view>
+
+
+
+<!--详情-->
+
+ <view class="introduction" wx:if="{{currentTab==0}}">
+      <p>
+      {{item.desc}}
+         乡村小子，纵横医道，依靠神奇能力，帮助乡亲们治疗疾病，闲时泡泡妹子，搞搞情趣，忙时拼命干活，拼命治病。人生要求并不高，做个当代韦小宝，顺便做个当代孙思邈。不求醒掌天下权，只求醉卧美人膝。如此，人生快哉！
+      </p>
+   </view>
+
+<!--节目-->
+<view class="program" wx:if="{{currentTab==1}}">
+     <view class="program-num">
+        <text class="num">共123集</text>
+        <text class="xu">排序</text>
+        <text class="xuan">选集</text>
+     </view>
+     <navigator url="../playDetail/playDetail">
+     <view class="program-detail">
+         <view class="program-detail-info">
+            <image src="http://img-tailor.11222.cn/bcv/big/201612191403117373.jpg"></image>
+            <view class="progam-d">
+                <text class="progam-d-title">作品名称</text>
+                <view class="progam-d-play">
+                    <view class="classname"><view class="playIcon"></view>12万</view> 
+                    <view class="classname"><icon type="waiting" size='12' color="#59D6F2"/>  12:00</view>
+                </view>
+            </view>
+            <view class="program-down"><icon type="download" size="25" color="#59D6F2"/></view>
+         </view>
+     </view>
+     </navigator>
+    
+</view>
+
+</view>

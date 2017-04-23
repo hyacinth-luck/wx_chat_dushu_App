@@ -1,0 +1,38 @@
+/*ranking.wxss*/
+page{
+    background:#F0F0F2;
+}
+.ranking{
+    background:#fff;
+    margin-bottom:20rpx;
+    padding:20rpx;
+
+}
+.ranking-nav{
+    padding-left:20rpx;
+    overflow:hidden;
+}
+.ranking-img{
+    width:60rpx;
+    height:60rpx;
+    border-radius: 50%;
+    margin-right:30rpx;
+    float:left;
+    margin-top:3%;
+}
+.ranking-title{
+    float:left;
+
+}
+.ranking-label{
+  font-size:35rpx;
+}
+.ranking-txt{
+    font-size:25rpx;
+    color:#999;
+}
+.ranking-label,.ranking-txt{
+    display: block;
+    line-height:55rpx;
+
+}

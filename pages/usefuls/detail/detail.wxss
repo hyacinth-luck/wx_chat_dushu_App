@@ -1,0 +1,33 @@
+/*detail*/
+page{
+    padding-left:30rpx;
+}
+
+
+.detail-top {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    background: white;
+}
+.top-image-left {
+    margin: 40rpx;
+}
+.top-text-right {
+    display: flex;
+    flex-direction: column;
+    font-size: 20rpx;
+     margin: 40rpx 0rpx;
+     padding-right:20rpx;
+
+}
+.intro{
+    text-indent: 40rpx;
+    padding-right:67rpx;
+    color:#383C47;
+}
+.zuopin{
+    padding-right:60rpx;
+}
+

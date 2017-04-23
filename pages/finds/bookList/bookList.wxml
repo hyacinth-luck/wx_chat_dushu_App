@@ -1,0 +1,34 @@
+<!--systematics.wxml-->
+<!--<view class="messae" wx:if="{{message == '系统繁忙，请稍后重试 3'? true:false}}">
+        {{message}}
+</view>-->
+<view class="girl-wrap">
+   <view class="girl">
+         <view class="girl-title">
+              <text class="girl-title-h">女生分类</text>
+         </view>
+         <view class="girl-data">
+            <image class="girl-icon" src="../../../images/dushu.png"></image>
+            <view class="girl-label">
+                 <text class="girl-label-title">现言</text>
+                 <view class="girl-label-list" >
+                    <text class="girl-label-list-item">高干</text>
+                 </view>
+            </view>
+         </view>
+   </view>
+   <view class="girl">
+         <view class="girl-title">
+              <text class="girl-title-h">男生分类</text>
+         </view>
+         <view class="girl-data">
+            <image class="girl-icon" src="../../../images/dushu.png"></image>
+            <view class="girl-label">
+                 <text class="girl-label-title">现言</text>
+                 <view class="girl-label-list">
+                    <text class="girl-label-list-item">高干</text>
+                 </view>
+            </view>
+         </view>
+   </view>
+</view>

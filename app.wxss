@@ -1,0 +1,83 @@
+/**app.wxss**/
+@import 'weui.wxss';
+view,text{
+  margin:0;
+  padding:0;
+}
+page{
+  background:#fff;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+.modal{
+  width:40%;
+  position:absolute;
+  left:30%;
+  top:-50%;
+  z-index: 1000;
+  border-radius: 5px;
+}
+.zhezhaoceng{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0px;
+  left:0px;
+  background: #7570df;
+  z-index: 200;
+  filter:alpha(opacity=60);
+  opacity:0.6; 
+}
+/*登录注册----------------------------------------------------------------*/
+.info-img{
+      width:240rpx;
+      height:240rpx;
+      margin:0% 30%;
+}
+.text-ime{
+    width:80%;
+    margin-left:10%;
+    border-bottom:1px solid #ccc;
+    padding-bottom:10rpx;
+    font-size:29rpx;
+    margin-top:10rpx;
+}
+.btn{
+    background-color:#F8F8F8;
+    width:80%;
+    box-shadow:0 0 4px 3px #D1F0F5;
+    background:#3FBBFB;
+    color:#fff;
+    border-radius:42rpx;
+    margin-top:82rpx;
+
+}
+
+
+
+.img-label{
+    height:64rpx;
+     width:20rpx; 
+     margin:0 8px;
+     float:left;
+}
+
+/*播放小图标
+*/
+.playIcon{
+  width:0;
+  height:0;
+  border:6px solid #59D6F2;
+  border-top-color:transparent;
+  border-right-color:transparent;
+  border-bottom-color:transparent;
+  display: inline-block;
+}

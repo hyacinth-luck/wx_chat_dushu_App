@@ -1,0 +1,42 @@
+/*create.wxss*/
+page{
+   color:#242030;
+}
+
+.createTitle{
+    padding:40rpx;
+    color: #333;
+    font-size: 24px;
+    padding-bottom: 20px;
+    background:url("http://pic.motieimg.com/_resources/css/model/img/bg-title-1.gif") repeat-x left bottom;
+}
+.weui-cells__title,.weui-cells__tips{
+    color:#242030;
+}
+.weui-cells__tips{
+  font-size:24rpx;
+}
+.weui-cell{
+    justify-content:space-between;
+}
+.create-content{
+    padding:40rpx;
+    overflow: hidden;
+    display:flex;
+    flex-flow:row;
+    justify-content:space-around;
+    font-size:30rpx;
+    line-height:45rpx;
+}
+.create-fenmian{
+    width:160rpx;
+    height:240rpx;
+    margin-top:20rpx;
+}
+.create-request{
+    width:100%;
+    margin-top:-20rpx;
+}
+.form-content-item {
+    background: #F8F8F8;
+}

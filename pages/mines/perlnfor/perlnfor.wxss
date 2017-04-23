@@ -1,0 +1,46 @@
+
+#message{
+    padding-top: 10rpx;
+    color:#434852;
+    font-size:28rpx;
+}
+.message{
+    width: 98%;
+    height:100rpx;
+    line-height: 100rpx;
+    border-bottom:1px solid #e9e5e5;
+    background:#fff;
+}
+.youjiantou{
+    width:25rpx;
+    height:25rpx;
+    margin-top:30rpx;
+}
+.youjiantou,.messageM{
+    float:right;
+    margin-left:20rpx;
+    color:#434852;
+}
+.perimg{
+    width:60rpx;
+    height:60rpx;
+    margin:20rpx;
+    float: left;
+    margin-right:0;
+}
+.title{
+   float:left;
+}
+.youjiantou{
+    margin-right:20rpx;
+}
+.messageM{
+    border:1px solid #ccc;
+    width:80rpx;
+    height:80rpx;
+    border-radius:50%;
+    margin-top:10rpx;
+}
+.userName,.address,.sex,.data{
+    float:right;
+}

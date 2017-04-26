@@ -35,7 +35,7 @@
       <button class="selected select-read">开始阅读</button>
     </navigator>
     <button class="selected select-download">离线下载</button>
-    <button class="selected select-bookshelf">加书架</button>
+    <button class="selected select-bookshelf" bindtap="addshelf">加书架</button>
   </view>
   <view class="introduction">
     <p>

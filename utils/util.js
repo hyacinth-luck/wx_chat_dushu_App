@@ -455,7 +455,31 @@ function shelf(callback){
   });
 }
 
+// 添加到书架
+function addshelf(bookId,callback){
+   httpUtil.get('http://localhost/book/'+bookId+'/add-to-shelf', {
+    params:{},
+    success: function (res) {
+      if (callback && typeof callback == "function") {
+        callback(res);
+      }
+    }
+  });
+}
 
+
+// 书籍的阅读历史
+function historyBook(callback){
+   httpUtil.get('http://localhost/book/history/list', {
+    params:{},
+    success: function (res) {
+      if (callback && typeof callback == "function") {
+        callback(res);
+      }
+    }
+  });
+
+}
 
 
 // 热门/新书/(可选条件:免费, 有声,全本,出版)
@@ -502,5 +526,6 @@ module.exports = {
   createBooks: createBooks,
   createBook:createBook,
   searchBook:searchBook,
-  shelf:shelf
+  shelf:shelf,
+  addshelf:addshelf
 }

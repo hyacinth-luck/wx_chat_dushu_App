@@ -268,3 +268,21 @@ page{
     color:#8e8e8e;
     font-size:27rpx;
 }
+
+
+
+/*无内容书架*/
+.bookshelfTit-info{
+    margin-top:30%;
+display:block;
+text-align:center;
+color:#D6F25D;
+
+
+}
+.bookshelfImg-info{
+    margin-top:3%;
+    width:80%;
+    margin-left:10%;
+
+}

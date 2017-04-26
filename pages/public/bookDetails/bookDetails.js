@@ -3,6 +3,7 @@ var util = require('../../../utils/util.js');
 var bookDetails = require('../../../utils/bookDetail.js');
 var bookLists = require('../../../utils/bookList.js');
 // var httpUtil=require('../../../utils/httpUtil.js') 
+var bookid="";
 Page({
   data: {
     loadingHidden: false,
@@ -19,6 +20,7 @@ Page({
   startReading: function () {
 
   },
+  
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     console.log(options)
@@ -38,15 +40,16 @@ Page({
     }, 1500)
 
 
-    // 获取书籍目录章节
+    bookid=options.id;
     var datas = {
       bookId: options.id
     }
-
+   
+    // 创建图书
     util.createBooks(
       {
         title: options.title,
-        extName:  options.desc,
+        extName: options.desc,
         freeType: 1,
         content: '花儿为什么这样红',
         audioFileUrl: "http://xx.com/xx.mp3"
@@ -54,10 +57,10 @@ Page({
       datas.bookId,
       function (res) {
         console.log(res)
-          
+
       }
     )
-
+    // 获取书籍目录章节
     util.bookCaptures(datas.bookId, function (res) {
       console.log(res)
     })
@@ -111,7 +114,21 @@ Page({
 
 
 
+// 添加到书架
+  addshelf: function () {
+         // 加入书架
+  console.log(bookid)
+    util.bookCaptures(bookid, function (res) {
+      console.log(res)
+       wx.showToast({
+            title: '添加成功',
+            icon: 'succes',
+            duration: 1000,
+            mask: true
+        })
+    })
 
+  },
   onReady: function () {
     // 页面渲染完成
   },

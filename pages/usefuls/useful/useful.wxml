@@ -102,3 +102,16 @@
         </view>
     </view>
 </view>
+
+
+
+    <!--好听的歌曲-->
+<view class='content-item'>
+<navigator url="../../music/music/music">
+    <view class="title-item">
+        <image class="img-label" src="../../../images/biao.png" ></image>
+        <label>曲阅杂看</label>
+        <view class="more">听听</view>
+    </view>
+ </navigator>   
+</view>

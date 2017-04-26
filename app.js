@@ -2,6 +2,15 @@ var util = require('/utils/util.js');
 
 //app.js
 App({
+  globalData:{
+    songData:null,
+    songLists:null
+  },
+  setGlobalData: function(obj){
+    for(var n in obj){
+      this.globalData[n] = obj[n];
+    }
+  },
   onLaunch: function () {
     var that = this;
     //调用API从本地缓存中获取数据

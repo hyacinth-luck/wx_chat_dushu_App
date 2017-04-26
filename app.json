@@ -44,7 +44,14 @@
     "pages/public/bookContents/bookContents",
     "pages/public/bookDetails/bookDetails",
     "pages/public/bookList/bookList",
-    "pages/public/popularBooks/popularBooks"
+    "pages/public/popularBooks/popularBooks",
+
+
+
+    "pages/music/music/music",
+    "pages/music/cdlist/cdlist",
+    "pages/music/playsong/playsong",
+    "pages/music/toplist/toplist"
 
   ],
   "window":{

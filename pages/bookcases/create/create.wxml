@@ -1,82 +1,82 @@
 <view class="create">
- <view class="create-wrapper">
+  <view class="create-wrapper">
     <view class="createTitle">创建作品</view>
-    <form>
-       <view class="create-content">
-            <view class="classname">
-                  <text class="create-label">作品封面：</text>
-                 <image class="create-fenmian" bindtap="Upload" src="http://pic.motieimg.com/_assets/pic-cover.jpg"></image>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="create-content">
+        <view class="classname">
+          <text class="create-label">作品封面：</text>
+          <image name="cover" class="create-fenmian" bindtap="Upload" src="http://pic.motieimg.com/_assets/pic-cover.jpg"></image>
+        </view>
+        <view class="create-request">
+          <text>
+            · 标准尺寸：400*560像素；\n· 建议比例5:7；\n· 文件大小：小于1M；\n· 文件格式:仅支持 jpg,png；\n· 其他要求：美观、精致；\n· 禁止使用违规、侵权图片。</text>
+        </view>
+      </view>
+      <view class="form-content-item">
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cells__title" data-categoryId="{{categoryId}}">作品名称：
+              <input class="weui-input" placeholder="请输入作品名称" name="booktitle" value="{{booktitle}}" />
             </view>
-              <view class="create-request">
-                  <text>
-                  · 标准尺寸：400*560像素；\n· 建议比例5:7；\n· 文件大小：小于1M；\n· 文件格式:仅支持 jpg,png；\n· 其他要求：美观、精致；\n· 禁止使用违规、侵权图片。</text>
+          </view>
+          <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cells__title">创建时间：</view>
+            <picker mode="date" value="{{dateValue}}" start="1999-01-01" end="2999-12-12" bindchange="datePickerBindchange">
+              <view class="weui-cell__ft weui-cell__ft_in-access" name="dateValue">
+                {{dateValue}}
               </view>
-       </view>
-
-       <view class="form-content-item">
-
-                <view class="weui-cells weui-cells_after-title">
-                    <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                        <view class="weui-cells__title">作品名称：<input class="weui-input" placeholder="请输入作品名称" value="{{booktitle}}"/></view>
-                    </view>
-                    <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                        <view class="weui-cells__title">创建时间：</view>
-                        <picker mode="date" value="{{dateValue}}" start="1999-01-01" end="2999-12-12" bindchange="datePickerBindchange">
-                            <view class="weui-cell__ft weui-cell__ft_in-access">
-                                {{dateValue}}
-                            </view>
-                        </picker>
-                    </view>
-               </view>
-
-              <view class="weui-cells__title">推荐语：</view>
-                <view class="weui-cells weui-cells_after-title">
-                    <view class="weui-cell weui-cell_input">
-                        <view class="weui-cell__bd">
-                            <input class="weui-input" placeholder="请输入文本" />
-                        </view>
-                    </view>
-                </view>
-
-
-              <view class="weui-cells__title">作品简介：</view>
-              <view class="weui-cells weui-cells_after-title">
-                  <view class="weui-cell">
-                      <view class="weui-cell__bd">
-                          <textarea class="weui-textarea" bindinput="changeTxt" maxlength="textLength"  bindfocus="bindfocusView" disabled="{{disabledes}}" placeholder="请输入文本" style="height: 3.3em" />
-                          <view class="weui-textarea-counter">还可以输入{{countfieldValue}}字</view>
-                      </view>
-                  </view>
-              </view>
-          
-
-
-              <view class="weui-cells__title">标签：</view>
-              <view class="weui-cells weui-cells_after-title">
-                  <view class="weui-cell weui-cell_input">
-                      <view class="weui-cell__bd">
-                          <input class="weui-input" placeholder="输入标签" />
-                      </view>
-                  </view>
-              </view>
-              <view class="weui-cells__tips">多个标签间请以空格隔开(最多5个)</view>
-
-       </view>
-
-
-        <button class="weui-btn" type="primary" bindtap="createBooks">保存</button>
-       
+            </picker>
+          </view>
+        </view>
+        <view class="weui-cells__title">作者名称:</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="authorName" value="{{authorName}}" placeholder="请输入文本" />
+            </view>
+          </view>
+        </view>
+        <view class="weui-cells__title">一句话描述:</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="introduction" value="{{introduction}}" placeholder="请输入文本" />
+            </view>
+          </view>
+        </view>
+        <view class="weui-cells__title">作品简介：</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+            <view class="weui-cell__bd">
+              <textarea class="weui-textarea" bindinput="changeTxt" maxlength="textLength" bindfocus="bindfocusView" disabled="{{disabledes}}"name="description" value="{{description}}" placeholder="请输入文本" style="height: 3.3em" />
+              <view class="weui-textarea-counter">还可以输入{{countfieldValue}}字</view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cells__title">标签：</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="tags" value=" {{tags}}" placeholder="输入标签" />
+            </view>
+          </view>
+        </view>
+        <view class="weui-cells__tips">多个标签间请以逗号隔开(最多5个)</view>
+        <view class="weui-cells__title">是否有声图书:</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">            
+            <view class="weui-cell__bd">
+              <radio-group name="gender">
+                <label>
+                 1.有声 <radio value="1" /></label>
+                <label>
+                  2.非有声<radio value="2" /></label>
+              </radio-group>
+            </view>
+          </view>
+        </view>
+      </view>
+      <button class="weui-btn" type="primary" formType="submit">点击创建图书</button>
     </form>
   </view>
 </view>
-
-<template>
-<action-sheet hidden="{{mediaActionSheetHidden}}" bindchange="mediaActionSheetChange">
-    <block wx:for-items="{{mediaActionSheetItems}}" wx:for-index="id" wx:key="item.id">
-      <action-sheet-item class="action-item" bindtap="{{mediaActionSheetBinds[id]}}">
-        {{item}}
-      </action-sheet-item>
-    </block>
-    <action-sheet-cancel class='action-cacel'>取消</action-sheet-cancel>
-  </action-sheet>
-</template>

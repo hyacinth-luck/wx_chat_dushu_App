@@ -1,12 +1,16 @@
 var util = require('../../../utils/util.js');
 const datestr = JSON.stringify(new Date());
 const dataes = datestr.substring(1, datestr.indexOf("T"));
-let textLength = 2000;
+let textLength = 500;
 Page({
   data: {
     dateValue: dataes,
     disabledes: false,
-    countfieldValue: 2000,
+    countfieldValue: 500,
+    isAudio1: 1,
+    isAudio2: 2,
+    checkedes: false,
+    disabledes: false,
     mediaActionSheetHidden: false
 
   },
@@ -15,8 +19,56 @@ Page({
       dateValue: e.detail.value
     })
   },
+
   // 点击保存创建的图书
-  createBooks: function () {
+  formSubmit: function (e) {
+    var that = this;
+    var formData = e.detail.value;
+    console.log(formData)
+    util.createBook(
+      {
+        categoryId: '856071846034817024',
+        name: formData.booktitle,
+        authorName: formData.authorName,
+        intro: formData.introduction,
+        description: formData.description,
+        cover: 'http://pic.motieimg.com/_assets/pic-cover.jpg',
+        "tags[]": formData.tags,
+        isAudio: formData.gender
+      },
+      function (res) {
+        console.log(res)
+        if (res.httpCode == 200) {
+          wx.showToast({
+            title: '创建作品完成',
+            icon: 'succes',
+            duration: 1000,
+            mask: true
+          })
+          setTimeout(function () {
+            wx.switchTab({
+              url: '../bookcase/bookcase',
+              success: function (res) {
+                // success
+              },
+              fail: function (res) {
+                // fail
+              },
+              complete: function (res) {
+                // complete
+              }
+            })
+
+          }, 1000)
+
+
+        }
+
+
+
+      }
+    )
+
 
   },
   //点击上传图片
@@ -82,5 +134,7 @@ Page({
 
   },
   onLoad: function () {
+
+
   }
 })

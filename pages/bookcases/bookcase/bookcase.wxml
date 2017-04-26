@@ -73,7 +73,7 @@
 
 <!--书架排列-->
 
-     <view class="bookshelf" wx:if="{{booksShow}}">
+     <view class="bookshelf" wx:if="{{sheltBooks}}">
         <navigator url="../bookDetails/bookDetails">
         <view class="bookshelfArrange" wx:for="{{imgInfo}}">
           <image class="bookshelfImg" src="{{item.imgUrl}}"></image>

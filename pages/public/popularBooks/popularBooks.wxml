@@ -22,7 +22,9 @@
                   </view>
                   <view class="book-tag">
                      <text class="label" style="color:#59D6F2">{{item.finishStatus === 0? '连载' : '完结'}}</text> 
-                     <text class="label items">{{item.tags}}</text>
+                     <block wx:for="{{item.tags}}">
+                     <text class="label items">{{item}}</text>
+                     </block>
                   </view>
                </view>
             </view>

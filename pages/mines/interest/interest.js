@@ -1,5 +1,5 @@
-var app=getApp();
-  app.globalData.border=[0,0,0,0,0,0,0,0,0]
+var app = getApp();
+app.globalData.border = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 Page({
     data: {
         borderStyle: "0;",
@@ -82,16 +82,16 @@ Page({
         hidden: false,//动画隐藏
         shows: true,//动画显示
         arr: [],//点击之后存放数据,
-      
-        border:app.globalData.border//点击之后所加边框数据
+
+        border: app.globalData.border//点击之后所加边框数据
     },
- showAnimate: function (ev) {//创建动画函数
+    showAnimate: function (ev) {//创建动画函数
         var that = this;
-        animation = wx.createAnimation({
+       var animation = wx.createAnimation({
             duration: 1000,
             timingFunction: 'ease-in-out',
-        }),
-        animation.rotate(720).scale(1.5).step({ duration: 1000 }).scale(1).step({ duration: 1000 })
+        });
+        animation.rotate(720).scale(1.5).step({ duration: 1000 }).scale(1).step({ duration: 1000 });
         setTimeout(function () {
             that.setData({
                 animationData: animation.export(),//导出动画
@@ -102,13 +102,13 @@ Page({
     },
 
     touchstar: function (ev) {//手指开始触摸时，目标元素添加动画和边框
-         if(ev.target.dataset.index == 0){
-              app.globalData.border[ev.target.id]=1;
-              var bdColor=this.data.borderStyle="3px solid #74C6D8;"
-              console.log(this.data.borderStyle)
-        }else{
-            app.globalData.border[ev.target.id]=0;
-             var bdColor=this.data.borderStyle="0"
+        if (ev.target.dataset.index == 0) {
+            app.globalData.border[ev.target.id] = 1;
+            var bdColor = this.data.borderStyle = "3px solid #74C6D8;"
+            console.log(this.data.borderStyle)
+        } else {
+            app.globalData.border[ev.target.id] = 0;
+            var bdColor = this.data.borderStyle = "0"
         }
         var that = this;
         var arrIndex = [];
@@ -120,8 +120,8 @@ Page({
         arrIndex[ev.target.id] = 1;
         that.setData({
             arr: arrIndex,
-            borderStyle:bdColor,
-            border:app.globalData.border
+            borderStyle: bdColor,
+            border: app.globalData.border
         })
         this.showAnimate(ev);//调用动画
     },
@@ -133,42 +133,42 @@ Page({
             mask: true
         })
         setTimeout(function () {
-           wx.switchTab({
-            url: '../../bookcases/bookcase/bookcase',
-            success: function (res) {
-                // success
-            },
-            fail: function (res) {
-                // fail
-            },
-            complete: function (res) {
-                // complete
-            }
-        })
+            wx.switchTab({
+                url: '../../bookcases/bookcase/bookcase',
+                success: function (res) {
+                    // success
+                },
+                fail: function (res) {
+                    // fail
+                },
+                complete: function (res) {
+                    // complete
+                }
+            })
 
-        },1000)
-       
+        }, 1000)
+
     },
     onHover: function () {
 
     },
-    
+
     all: function (ev) {
-       var that=this;
-       var arr=[];
-       var bdColor=this.data.borderStyle="3px solid #74C6D8;"
+        var that = this;
+        var arr = [];
+        var bdColor = this.data.borderStyle = "3px solid #74C6D8;"
         for (var i = 0; i < app.globalData.border.length; i++) {
-             app.globalData.border[i]=1
-             arr.push(1)
+            app.globalData.border[i] = 1
+            arr.push(1)
         };
 
         that.setData({
-            arr:arr,
-            borderStyle:bdColor,
-            border:app.globalData.border
+            arr: arr,
+            borderStyle: bdColor,
+            border: app.globalData.border
 
         })
-         this.showAnimate(ev);
+        this.showAnimate(ev);
 
     }
 })

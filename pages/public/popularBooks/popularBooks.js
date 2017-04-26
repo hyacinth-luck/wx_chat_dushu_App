@@ -2,38 +2,48 @@
 var app = getApp();
 var util = require('../../../utils/util.js');
 Page({
-  data:{},
-  onLoad:function(options){
-    var that=this;
+  data: {
+
+    pageNum: 1,
+    pageSize: 10,
+
+  },
+  onLoad: function (options) {
+    var that = this;
     // 页面初始化 options为页面跳转所带来的参数
-  //  获取免费书籍
-  console.log(options)
-   var params = {
-      pageNum: 1,
+    //  获取免费书籍
+    // console.log(that.pager.pageNum)
+    var params = {
+      pageNum: options.num,
       pageSize: 10,
-      lastRecordId:options.id
+      lastRecordId: options.id
     };
     util.freeBook(params, function (res) {
       console.log(res)
+      if (res.data) {
+        for (var i = 0, n = res.data.records.length; i < n; ++i) {
+          res.data.records[i].tags = res.data.records[i].tags.split(",");
+        }
+      }
       that.setData({
-        freeBooks:res.data.data
+        freeBooks: res.data
       })
-     console.log(res.data.data)
+
     });
 
 
 
   },
-  onReady:function(){
+  onReady: function () {
     // 页面渲染完成
   },
-  onShow:function(){
+  onShow: function () {
     // 页面显示
   },
-  onHide:function(){
+  onHide: function () {
     // 页面隐藏
   },
-  onUnload:function(){
+  onUnload: function () {
     // 页面关闭
   }
 })

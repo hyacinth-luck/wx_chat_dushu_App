@@ -1,3 +1,5 @@
+var httpUtil = require("HttpUtil.js");
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -17,19 +19,19 @@ function formatNumber(n) {
 }
 
 
-function getBooks(){
+function getBooks() {
   wx.request({
     url: 'https://URL',
     data: {},
     method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
     // header: {}, // 设置请求的 header
-    success: function(res){
+    success: function (res) {
       // success
     },
-    fail: function(res) {
+    fail: function (res) {
       // fail
     },
-    complete: function(res) {
+    complete: function (res) {
       // complete
     }
   })
@@ -39,36 +41,36 @@ function getBooks(){
 
 // 获取男生美文列表
 function getBoyGirlsBooks(callback) {
-    wx.request({
-        url: 'http://bookstoreapi.shuqireader.com/eva_bookstore/v1/module/query?appId=1&pageId=1&channelId=&versionId=&ver=&shuqi_h5=&md5key=&userId=8000000&timestamp=1492576266&type=2&resetcache=&func_id=33%2C11%2C33%2C11%2C19%2C33%2C11%2C33%2C11%2C19&orderid=6%2C7%2C8%2C9%2C10%2C11%2C12%2C13%2C14%2C15&sign=60F757437BD11E39CC748BB018F67EF0&key=shuqiapi&_=1492576266653',
-        data: {
-          // appId:1,
-          // pageId:1,
-          // channelId:'',
-          // versionId:'',
-          // ver:'',
-          // shuqi_h5:'',
-          // md5key:'',
-          // userId:8000000,
-          // timestamp:1492577406,
-          // type:2,
-          // resetcache:'',
-          // func_id:[33,11,33,11,19,33,11,33,11,19],
-          // orderid:[6,7,8,9,10,11,12,13,14,15],
-          // sign:'00317BC1596ABA3A8739B5D927CAFFB0',
-          // key:shuqiapi,
-          // _:1492577406995
-        },
-        method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-        header: {'content-Type':'application/json'}, // 设置请求的 header
-        success: function(res){
-          if (res.statusCode == 200) {
-            var data = res.data;
-            callback(data);
-          }
-        }
+  wx.request({
+    url: 'http://bookstoreapi.shuqireader.com/eva_bookstore/v1/module/query?appId=1&pageId=1&channelId=&versionId=&ver=&shuqi_h5=&md5key=&userId=8000000&timestamp=1492576266&type=2&resetcache=&func_id=33%2C11%2C33%2C11%2C19%2C33%2C11%2C33%2C11%2C19&orderid=6%2C7%2C8%2C9%2C10%2C11%2C12%2C13%2C14%2C15&sign=60F757437BD11E39CC748BB018F67EF0&key=shuqiapi&_=1492576266653',
+    data: {
+      // appId:1,
+      // pageId:1,
+      // channelId:'',
+      // versionId:'',
+      // ver:'',
+      // shuqi_h5:'',
+      // md5key:'',
+      // userId:8000000,
+      // timestamp:1492577406,
+      // type:2,
+      // resetcache:'',
+      // func_id:[33,11,33,11,19,33,11,33,11,19],
+      // orderid:[6,7,8,9,10,11,12,13,14,15],
+      // sign:'00317BC1596ABA3A8739B5D927CAFFB0',
+      // key:shuqiapi,
+      // _:1492577406995
+    },
+    method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+    header: { 'content-Type': 'application/json' }, // 设置请求的 header
+    success: function (res) {
+      if (res.statusCode == 200) {
+        var data = res.data;
+        callback(data);
+      }
+    }
 
-    })
+  })
 }
 
 
@@ -353,39 +355,108 @@ function getSongInfo(id, mid, callback) {
 
 
 // 免费书籍列表
-function freeBook(data, callback){
-  wx.request({
-    url: 'http://localhost/book/list/free',
-    data:data,
-    method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-     header: { 'authToken': getAuthToken() },// 设置请求的 header
-    success: function(res){
-        if(res.statusCode == 200 ){
-          var data = res;
-          callback(data);
-        }
-      // success
-    }
-  })
-}
-
-/**
- * 
- */
-function getNewestBooks(data, callback) {
-  wx.request({
-    url: 'http://localhost/book/list/newest',
-    data: data,
-    method: 'POST',
-    header: { 'authToken': getAuthToken() },
+function freeBook(data, callback) {
+  httpUtil.get('http://localhost/book/list/free', {
+    params: data,
     success: function (res) {
-      if (res.statusCode == 200) {
-        var data = res;
-        callback(data);
+      if (callback && typeof callback == "function") {
+        callback(res);
       }
     }
   });
 }
+
+
+
+// 书籍章节列表
+function bookCaptures(bookId, callback) {
+
+   httpUtil.get('http://localhost/book/' + bookId + '/chapter/list', {
+    params: {},
+    success: function (res) {
+      if (callback && typeof callback == "function") {
+        callback(res);
+      }
+    }
+  });
+ 
+}
+/**
+ * 
+ */
+// 最新书籍列表
+function getNewestBooks(data, callback) {
+ httpUtil.post('http://localhost/book/list/newest', {
+    params:data,
+    success: function (res) {
+      if (callback && typeof callback == "function") {
+        callback(res);
+      }
+    }
+  });
+}
+// 创建图书
+function createBook(data,callback){
+   httpUtil.post('http://localhost/book/create', {
+    params:data,
+    success: function (res) {
+      if (callback && typeof callback == "function") {
+        callback(res);
+      }
+    },
+    fail: function (res) {
+
+    }
+  });
+
+}
+
+/**
+ *  创建图书章节
+ */
+function createBooks(data, bookId, callback) {
+
+  httpUtil.post('http://localhost/book/' + bookId + '/chapter/create', {
+    params:data,
+    success: function (res) {
+      if (callback && typeof callback == "function") {
+        callback(res);
+      }
+    },
+    fail: function (res) {
+
+    }
+  });
+
+}
+
+// 关键字搜索图书
+function searchBook(keyword, callback){
+  httpUtil.get('http://localhost/book/list/search', {
+    params:keyword,
+    success: function (res) {
+      if (callback && typeof callback == "function") {
+        callback(res);
+      }
+    }
+  });
+
+}
+
+// 书架书籍列表
+function shelf(callback){
+   httpUtil.post('http://localhost/book/shelf/newest/list', {
+    params:{},
+    success: function (res) {
+      if (callback && typeof callback == "function") {
+        callback(res);
+      }
+    }
+  });
+}
+
+
+
 
 // 热门/新书/(可选条件:免费, 有声,全本,出版)
 
@@ -396,11 +467,15 @@ function getNewestBooks(data, callback) {
 // 书籍收藏
 // 阅读历史
 
-function getAuthToken(){
+function getAuthToken() {
   // 简单处理,
   return wx.getStorageSync('authToken');
   //return "DAtMctt1rnCRP3+uZkg8Pq==";
 }
+
+
+
+
 
 
 
@@ -418,11 +493,14 @@ module.exports = {
   getCdlistInfo: getCdlistInfo,
   calculateBgColor: calculateBgColor,
   getLyric: getLyric,
-  getSongInfo:getSongInfo,
-  getBoyGirlsBooks:getBoyGirlsBooks,
-
-  getNewestBooks:getNewestBooks,
-
+  getSongInfo: getSongInfo,
+  getBoyGirlsBooks: getBoyGirlsBooks,
+  getNewestBooks: getNewestBooks,
   getAuthToken: getAuthToken,
-  freeBook:freeBook
+  freeBook: freeBook,
+  bookCaptures: bookCaptures,
+  createBooks: createBooks,
+  createBook:createBook,
+  searchBook:searchBook,
+  shelf:shelf
 }

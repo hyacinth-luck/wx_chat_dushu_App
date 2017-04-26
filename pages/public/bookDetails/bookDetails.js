@@ -2,16 +2,18 @@
 var util = require('../../../utils/util.js');
 var bookDetails = require('../../../utils/bookDetail.js');
 var bookLists = require('../../../utils/bookList.js');
+// var httpUtil=require('../../../utils/httpUtil.js') 
 Page({
   data: {
     loadingHidden: false,
-    chapter:null,
-    chapterList:[],
-    chapterListHeight:0,
-    scrollTop:66,
-    chapterListMessage:null,
-    chapterList1:[],
-    price:''
+    actionSheetHidden: true,
+    chapter: null,
+    chapterList: [],
+    chapterListHeight: 0,
+    scrollTop: 66,
+    chapterListMessage: null,
+    chapterList1: [],
+    price: ''
   },
   // 点击阅读
   startReading: function () {
@@ -37,21 +39,27 @@ Page({
 
 
     // 获取书籍目录章节
-    wx.request({
-      url: 'http://localhost/book/'+options.id+'/chapter/list?pageNum=1&pageSize='+options.size+'',
-      data: {},
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      header: {'authToken': getAuthToken() }, // 设置请求的 header
-      success: function(res){
-        // success
+    var datas = {
+      bookId: options.id
+    }
+
+    util.createBooks(
+      {
+        title: options.title,
+        extName:  options.desc,
+        freeType: 1,
+        content: '花儿为什么这样红',
+        audioFileUrl: "http://xx.com/xx.mp3"
+      },
+      datas.bookId,
+      function (res) {
         console.log(res)
-      },
-      fail: function(res) {
-        // fail
-      },
-      complete: function(res) {
-        // complete
+          
       }
+    )
+
+    util.bookCaptures(datas.bookId, function (res) {
+      console.log(res)
     })
 
     // 设置lyric-swiper的高度
@@ -62,40 +70,40 @@ Page({
         });
       }
     });
-    
+
 
   },
-     // 点击显示付费提示框payStatus  chapterPrice
-  spend:function(ev){
+  // 点击显示付费提示框payStatus  chapterPrice
+  spend: function (ev) {
     console.log(ev)
-    if ( ev.currentTarget.dataset.status==3 ){
-          this.setData({
-            price:ev.currentTarget.dataset.price,
-            actionSheetHidden:!this.data.actionSheetHidden
-         })
+    if (ev.currentTarget.dataset.status == 3) {
+      this.setData({
+        price: ev.currentTarget.dataset.price,
+        actionSheetHidden: !this.data.actionSheetHidden
+      })
     }
   },
   // 确定充值
- reacarge:function(){
-     
-      wx.requestPayment({
-            'timeStamp': '',
-            'nonceStr': '',
-            'package': '',
-            'signType': 'MD5',
-            'paySign': '',
-            'success':function(res){
-              requestPayment:ok
-               
-            },
-            'fail':function(res){
-            }
-          })  
- },
-   // 点击隐藏付费提示框
-  actionSheetbindchange:function(){
+  reacarge: function () {
+
+    wx.requestPayment({
+      'timeStamp': '',
+      'nonceStr': '',
+      'package': '',
+      'signType': 'MD5',
+      'paySign': '',
+      'success': function (res) {
+        requestPayment: ok
+
+      },
+      'fail': function (res) {
+      }
+    })
+  },
+  // 点击隐藏付费提示框
+  actionSheetbindchange: function () {
     this.setData({
-      actionSheetHidden:!this.data.actionSheetHidden
+      actionSheetHidden: !this.data.actionSheetHidden
     })
   },
 

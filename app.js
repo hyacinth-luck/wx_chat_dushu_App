@@ -62,7 +62,8 @@ App({
         success: function (res) {
           console.log("授权code: %s", JSON.stringify(res));
           if (res.code) {
-            that.login(res.code)
+            
+            that.login(res.code);
 
             wx.getUserInfo({
               success: function (res) {

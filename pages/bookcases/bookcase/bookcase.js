@@ -43,6 +43,7 @@ Page({
 
 
   },
+  // 点击申请创建自己的图书
   deitBookshelf: function () {
     wx.showModal({
       title: '申请成为作者',
@@ -79,7 +80,7 @@ Page({
     
     // 获取书架书籍
     util.shelf(function (res) {
-        console.log(res)
+        console.log(res.data)
       that.setData({
        sheltBooks:res.data
       })

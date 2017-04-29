@@ -1,26 +1,29 @@
  <!--bookList.wxml-->
+<loading hidden="{{loadingHidden}}">
+  加载中...
+</loading>
+
  <view class="bookList">
      <view class="header-nav">
-        <text class="list-label">1-{{chapterList.length}}章</text>
-        <image class="list-img" src="../../../images/mulv.png"></image>
+        <text class="list-label">1-{{options.total}}章</text>
+        <view class="classname" data-status="{{status}}" bindtap="sortCapture" data-options="{{options}}">{{sortCapture}}</view>
      </view>
- <scroll-view scroll-y="true" style="height:{{chapterListHeight}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-   <block wx:for="{{chapterList}}">
+ <scroll-view scroll-y="true" style="height:{{chapterListHeight}}px;" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
+   <block wx:for="{{chapterList.records}}">
     <view class="book-lists">
   
         <view class="list-navs">
-        <navigator url="../bookContents/bookContents?bookid={{chapter.bookId}}&chapterId={{item.chapterId}}&chapterOrdid={{item.chapterOrdid}}">
-              <text class="list-number">{{item.chapterName}}</text>
+        <navigator url="../bookContents/bookContents?bookId={{item.bookId}}&id={{item.id}}&title={{item.title}}&total={{chapterList.total}}">
+              <text class="list-number">{{item.title}}</text>
               <text class="list-title"></text>
          </navigator>      
-              <text bindtap="spend"  data-status="{{item.payStatus}}" data-freeRead="{{item.isFreeRead}}" data-price="{{item.chapterPrice}}" class="fufei {{item.isFreeRead==true?'':'active'}}">{{item.isFreeRead==true?"免费":"请购买"}}</text>
+              <text bindtap="spend"  data-status="{{item.payStatus}}" data-freeRead="{{item.isFreeRead}}" data-price="{{item.chapterPrice}}" class="fufei {{item.freeType==1?'':'active'}}">{{item.freeType==1?"免费":"请购买"}}</text>
         </view>
      
      </view>
      </block>
    
   </scroll-view>
-
 
     
  </view>

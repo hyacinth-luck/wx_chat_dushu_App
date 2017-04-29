@@ -2,8 +2,7 @@
 var util = require('../../../utils/util.js');
 var bookDetails = require('../../../utils/bookDetail.js');
 var bookLists = require('../../../utils/bookList.js');
-// var httpUtil=require('../../../utils/httpUtil.js') 
-var bookid="";
+var bookid = "";
 Page({
   data: {
     loadingHidden: false,
@@ -15,16 +14,41 @@ Page({
     chapterListMessage: null,
     chapterList1: [],
     price: ''
-  },
-  // 点击阅读
-  startReading: function () {
 
   },
-  
+  // 点击开始阅读
+  startReading: function (ev) {
+    // 获取书籍目录章节
+    var that = this;
+    var data = ev.target.dataset;
+    var bookId = '';
+    var id = '';
+    var title = '';
+    var datas = {
+      pageNum: 1,
+      pageSize: data.total
+    }
+    console.log(data)
+    util.bookCaptures(data.bookid, datas, function (res) {
+      res.data.records = res.data.records.reverse()
+      console.log(res.data.records[0])
+      bookId = res.data.records[0].bookId,
+        id = res.data.records[0].id
+      title = res.data.records[0].title
+      let url = `../bookContents/bookContents?bookId=` + bookId + `&id=` + id + `&title=` + title + `&total=` + data.total;
+      wx.redirectTo({
+        url: url
+      })
+    })
+
+  },
+
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     console.log(options)
     var that = this;
+
+
     // 获取书籍信息
     if (options.tag) {
       options.tag = options.tag.split(",")
@@ -38,32 +62,35 @@ Page({
         loadingHidden: true
       })
     }, 1500)
-
-
-    bookid=options.id;
     var datas = {
-      bookId: options.id
+      pageNum: 1,
+      pageSize: 10
     }
-   
-    // 创建图书
-    util.createBooks(
-      {
-        title: options.title,
-        extName: options.desc,
-        freeType: 1,
-        content: '花儿为什么这样红',
-        audioFileUrl: "http://xx.com/xx.mp3"
-      },
-      datas.bookId,
-      function (res) {
-        console.log(res)
 
-      }
-    )
     // 获取书籍目录章节
-    util.bookCaptures(datas.bookId, function (res) {
+    util.bookCaptures(options.id, datas, function (res) {
       console.log(res)
+      res.data.records = res.data.records.reverse()
+      that.setData({
+        chapterList: res.data
+      });
+
     })
+
+
+    // 获取书籍详情
+    // util.bookDetail(options.id,function(res){
+    //   console.log(res)
+    //    that.setData({
+    //       chapterList: res.data
+    //   });
+
+    // })
+
+
+
+
+
 
     // 设置lyric-swiper的高度
     wx.getSystemInfo({
@@ -76,56 +103,22 @@ Page({
 
 
   },
-  // 点击显示付费提示框payStatus  chapterPrice
-  spend: function (ev) {
+
+
+
+  // 添加到书架
+  addshelf: function (ev) {
+    // 加入书架
     console.log(ev)
-    if (ev.currentTarget.dataset.status == 3) {
-      this.setData({
-        price: ev.currentTarget.dataset.price,
-        actionSheetHidden: !this.data.actionSheetHidden
-      })
-    }
-  },
-  // 确定充值
-  reacarge: function () {
-
-    wx.requestPayment({
-      'timeStamp': '',
-      'nonceStr': '',
-      'package': '',
-      'signType': 'MD5',
-      'paySign': '',
-      'success': function (res) {
-        requestPayment: ok
-
-      },
-      'fail': function (res) {
-      }
-    })
-  },
-  // 点击隐藏付费提示框
-  actionSheetbindchange: function () {
-    this.setData({
-      actionSheetHidden: !this.data.actionSheetHidden
-    })
-  },
-
-
-
-
-
-// 添加到书架
-  addshelf: function () {
-         // 加入书架
-  console.log(bookid)
-    util.bookCaptures(bookid, function (res) {
+    var bookId = ev.target.dataset.bid
+    util.addshelf(bookId, function (res) {
       console.log(res)
-       wx.showToast({
-            title: '添加成功',
-            icon: 'succes',
-            duration: 1000,
-            mask: true
-        })
+      wx.showToast({
+        title: '添加成功',
+        icon: 'succes',
+        duration: 1000,
+        mask: true
+      })
     })
 
   },

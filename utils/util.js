@@ -18,27 +18,6 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-
-function getBooks() {
-  wx.request({
-    url: 'https://URL',
-    data: {},
-    method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-    // header: {}, // 设置请求的 header
-    success: function (res) {
-      // success
-    },
-    fail: function (res) {
-      // fail
-    },
-    complete: function (res) {
-      // complete
-    }
-  })
-
-}
-
-
 // 获取男生美文列表
 function getBoyGirlsBooks(callback) {
   wx.request({
@@ -369,25 +348,24 @@ function freeBook(data, callback) {
 
 
 // 书籍章节列表
-function bookCaptures(bookId, callback) {
-
-   httpUtil.get('http://localhost/book/' + bookId + '/chapter/list', {
-    params: {},
+function bookCaptures(bookId, data, callback) {
+  httpUtil.get('http://localhost/book/' + bookId + '/chapter/list', {
+    params: data,
     success: function (res) {
       if (callback && typeof callback == "function") {
         callback(res);
       }
     }
   });
- 
+
 }
 /**
  * 
  */
 // 最新书籍列表
 function getNewestBooks(data, callback) {
- httpUtil.post('http://localhost/book/list/newest', {
-    params:data,
+  httpUtil.post('http://localhost/book/list/newest', {
+    params: data,
     success: function (res) {
       if (callback && typeof callback == "function") {
         callback(res);
@@ -396,9 +374,9 @@ function getNewestBooks(data, callback) {
   });
 }
 // 创建图书
-function createBook(data,callback){
-   httpUtil.post('http://localhost/book/create', {
-    params:data,
+function createBook(data, callback) {
+  httpUtil.post('http://localhost/book/create', {
+    params: data,
     success: function (res) {
       if (callback && typeof callback == "function") {
         callback(res);
@@ -417,7 +395,7 @@ function createBook(data,callback){
 function createBooks(data, bookId, callback) {
 
   httpUtil.post('http://localhost/book/' + bookId + '/chapter/create', {
-    params:data,
+    params: data,
     success: function (res) {
       if (callback && typeof callback == "function") {
         callback(res);
@@ -431,9 +409,9 @@ function createBooks(data, bookId, callback) {
 }
 
 // 关键字搜索图书
-function searchBook(keyword, callback){
+function searchBook(keyword, callback) {
   httpUtil.get('http://localhost/book/list/search', {
-    params:keyword,
+    params: keyword,
     success: function (res) {
       if (callback && typeof callback == "function") {
         callback(res);
@@ -444,9 +422,9 @@ function searchBook(keyword, callback){
 }
 
 // 书架书籍列表
-function shelf(callback){
-   httpUtil.post('http://localhost/book/shelf/newest/list', {
-    params:{},
+function shelf(callback) {
+  httpUtil.post('http://localhost/book/shelf/list', {
+    params: {},
     success: function (res) {
       if (callback && typeof callback == "function") {
         callback(res);
@@ -456,9 +434,9 @@ function shelf(callback){
 }
 
 // 添加到书架
-function addshelf(bookId,callback){
-   httpUtil.get('http://localhost/book/'+bookId+'/add-to-shelf', {
-    params:{},
+function addshelf(bookId, callback) {
+  httpUtil.get('http://localhost/book/' + bookId + '/add-to-shelf', {
+    params: {},
     success: function (res) {
       if (callback && typeof callback == "function") {
         callback(res);
@@ -469,9 +447,9 @@ function addshelf(bookId,callback){
 
 
 // 书籍的阅读历史
-function historyBook(callback){
-   httpUtil.get('http://localhost/book/history/list', {
-    params:{},
+function historyBook(callback) {
+  httpUtil.get('http://localhost/book/history/list', {
+    params: {},
     success: function (res) {
       if (callback && typeof callback == "function") {
         callback(res);
@@ -481,6 +459,19 @@ function historyBook(callback){
 
 }
 
+
+// 书籍详情
+function bookDetail(bookId,callback){
+   httpUtil.get('http://localhost/book/'+bookId+'/info', {
+    params: {},
+    success: function (res) {
+      if (callback && typeof callback == "function") {
+        callback(res);
+      }
+    }
+  });
+
+}
 
 // 热门/新书/(可选条件:免费, 有声,全本,出版)
 
@@ -497,15 +488,64 @@ function getAuthToken() {
   //return "DAtMctt1rnCRP3+uZkg8Pq==";
 }
 
+// 书籍正文内容
+function bookContent(bookId, chapterId, callback) {
+  httpUtil.get('http://localhost/book/' + bookId + '/chapter/' + chapterId + '/content', {
+    params: {},
+    success: function (res) {
+      if (callback && typeof callback == "function") {
+        callback(res);
+      }
+    }
+  });
+
+}
+
+// 懒加载
+var l = [];
+function GetList(that, data, url) {
+  that.setData({
+    hidden: false
+  });
+  console.log(data)
+  var params = {
+    pageNum: data.pageNum,
+    pageSize: data.pageSize,
+    lastRecordId: data.lastRecordId
+  };
+  url(params, function (res) {
+    console.log(res)
+
+    if (res.data) {
+      res.data.records.forEach((e) => {
+        e.tags = e.tags ? e.tags.split(",") : [];
+      });
+
+    }
+    for (var i = 0; i < res.data.records.length; i++) {
+      l.push(res.data.records[i])
+    }
+    res.data.records = l;
+    that.setData({
+      freeBooks: res.data,
+      hidden: true
+    });
+    params.pageNum++;
+  });
+}
 
 
 
+/* ################################
+
+!function importFromQidian(bookListUrl) {
+  httpUtil.post("http://localhost/book/import-from-qidian", { params: { bookListUrl: bookListUrl } }
+  )
+}("http://f.qidian.com/all?size=-1&sign=-1&tag=-1&chanId=4&subCateId=-1&orderId=5&update=-1&page=1&month=-1&style=1&action=-1");
 
 
 
-
-
-
+#####################################*/
 
 module.exports = {
   formatTime: formatTime,
@@ -524,8 +564,11 @@ module.exports = {
   freeBook: freeBook,
   bookCaptures: bookCaptures,
   createBooks: createBooks,
-  createBook:createBook,
-  searchBook:searchBook,
-  shelf:shelf,
-  addshelf:addshelf
+  createBook: createBook,
+  searchBook: searchBook,
+  shelf: shelf,
+  addshelf: addshelf,
+  GetList: GetList,
+  bookContent: bookContent,
+  bookDetail:bookDetail
 }

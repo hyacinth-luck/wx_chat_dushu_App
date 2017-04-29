@@ -3,36 +3,66 @@ var app = getApp();
 var util = require('../../../utils/util.js');
 Page({
   data: {
-
-    pageNum: 1,
-    pageSize: 10,
+    hidden: true,
+    freeBooks: null
 
   },
   onLoad: function (options) {
-    var that = this;
     // 页面初始化 options为页面跳转所带来的参数
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.info(res.windowHeight);
+        that.setData({
+          scrollHeight: res.windowHeight,
+          options: options
+        });
+      }
+    });
     //  获取免费书籍
-    // console.log(that.pager.pageNum)
     var params = {
       pageNum: options.num,
       pageSize: 10,
       lastRecordId: options.id
     };
-    util.freeBook(params, function (res) {
-      console.log(res)
-      if (res.data) {
-        for (var i = 0, n = res.data.records.length; i < n; ++i) {
-          res.data.records[i].tags = res.data.records[i].tags.split(",");
-        }
-      }
-      that.setData({
-        freeBooks: res.data
-      })
 
+    util.GetList(that, params, util.freeBook)
+  },
+  // 下拉刷新
+  bindDownLoad: function (ev) {
+    var that = this;
+    var options = ev.target.dataset.opentions;
+    var params = {
+      pageNum: options.num,
+      pageSize: 10,
+      lastRecordId: options.id
+    };
+    util.GetList(that, params, util.freeBook)
+  },
+  scroll: function (event) {
+    this.setData({
+      scrollTop: event.detail.scrollTop
     });
-
-
-
+  },
+  // 上拉刷新
+  refresh: function (event) {
+    var options = event.target.dataset.opentions;
+    var params = {
+      pageNum: options.num,
+      pageSize: 10,
+      lastRecordId: options.id
+    };
+    this.setData({
+      freeBooks: null,
+      scrollTop: 0
+    });
+    util.GetList(this, params, util.freeBook)
+  },
+  onPullDownRefresh: function () {
+    console.log("下拉")
+  },
+  onReachBottom: function () {
+    console.log("上拉");
   },
   onReady: function () {
     // 页面渲染完成

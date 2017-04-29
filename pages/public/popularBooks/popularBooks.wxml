@@ -1,4 +1,6 @@
 <!--pages/poblic/popularBooks/popularBooks.wxml-->
+ <scroll-view data-opentions="{{options}}" scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;"   
+        class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh" > 
 <view class="popularBooks">
     <view class="classname">
       <block wx:for="{{freeBooks.records}}" wx:key="{{item}}">
@@ -32,3 +34,10 @@
       </block>
     </view>
 </view>
+</scroll-view>  
+
+<view class="body-view">  
+        <loading hidden="{{hidden}}" bindchange="loadingChange">  
+            加载中...  
+        </loading>  
+</view> 

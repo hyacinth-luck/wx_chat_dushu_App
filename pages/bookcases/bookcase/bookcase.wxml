@@ -78,12 +78,14 @@
           <text class="bookshelfTit-info">你还没有添加到任何书到书架哦!</text>
           <image class="bookshelfImg-info" src="../../../images/dushu.png"></image>
         </view>
-        <navigator url="../bookDetails/bookDetails" wx:if="{{sheltBooks.records.length>0}}">
-        <view class="bookshelfArrange" wx:for="{{sheltBooks.records}}">
-          <image class="bookshelfImg" src="{{item.imgUrl}}"></image>
-          <text class="bookshelfTit">{{item.title}}</text>
+        <block wx:if="{{sheltBooks.records.length>0}}" wx:for="{{sheltBooks.records}}">
+        <navigator url="../../public/bookDetails/bookDetails?page={{sheltBooks.pages}}&id={{item.id}}&bookImg={{item.cover}}&desc={{item.intro}}&size={{sheltBooks.size}}&total={{sheltBooks.total}}&tag={{item.tags}}&title={{item.bookName}}&authorName={{item.authorName}}&categoryId={{item.categoryId}}" >
+        <view class="bookshelfArrange" >
+          <image class="bookshelfImg" src="{{item.cover}}"></image>
+          <text class="bookshelfTit">{{item.bookName}}</text>
         </view>
         </navigator>
+        </block>
       </view>
 
 

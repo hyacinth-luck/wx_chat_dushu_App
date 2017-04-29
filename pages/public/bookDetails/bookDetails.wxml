@@ -25,17 +25,14 @@
           <text class="label">{{item}}</text>
         </block>
       </text>
-      <text class="cover-book-text cover-book-price">
-        {{item.isBuy == false? '正在免费' : '付费阅读'}}
-      </text>
     </view>
   </view>
   <view class="select">
-    <navigator url="../bookContents/bookContents?bookId={{books.bookId}}&user_id={{books.uid}}&timestamp={{}}&sign={{}}">
-      <button class="selected select-read">开始阅读</button>
-    </navigator>
+    <!--<navigator url="../bookContents/bookContents?bookId={{item.bookId}}&id={{item.id}}&title={{item.title}}&total={{chapterList.total}}">-->
+      <button class="selected select-read" bindtap="startReading" data-total="{{chapterList.total}}" data-bookId="{{options.id}}">开始阅读</button>
+    <!--</navigator>-->
     <button class="selected select-download">离线下载</button>
-    <button class="selected select-bookshelf" bindtap="addshelf">加书架</button>
+    <button class="selected select-bookshelf" bindtap="addshelf" data-num="{{options.total}}" data-bid="{{options.id}}">加书架</button>
   </view>
   <view class="introduction">
     <p>
@@ -45,64 +42,36 @@
 
   <!--章节目录-->
   <view class="weui-panel__hd book-lists">
-    <image class="img-label" src="../../../images/biao.png"></image>目录章节
+    <!--<image class="img-label" src="../../../images/biao.png"></image>-->
+    目录章节
   </view>
-  <view class="bookList">
-    <view class="header-nav">
-      <text class="list-label">1-{{chapterList.length}}章</text>
-      <image class="list-img" src="../../../images/mulv.png"></image>
-    </view>
-    <scroll-view scroll-y="true" style="height:{{chapterListHeight}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-      <block wx:for="{{bookcapture.records}}">
-        <view class="book-lists">
-          <view class="list-navs">
-            <navigator url="../bookContents/bookContents?bookid={{chapter.bookId}}&chapterId={{item.chapterId}}&chapterOrdid={{item.chapterOrdid}}">
-              <text class="list-number">{{item.chapterName}}</text>
-              <text class="list-title"></text>
+  <view class="">
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_small-appmsg">
+        <view class="weui-cells weui-cells_in-small-appmsg">
+         <navigator url="../bookList/bookList?bookId={{options.id}}&total={{chapterList.total}}">
+            <view class="weui-panel__ft">
+              <view class="weui-cell weui-cell_access weui-cell_link">
+                <view class="weui-cell__bd">查看全部章节</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+              </view>
+            </view>
+          </navigator>
+          <block wx:for="{{chapterList.records}}">
+            <navigator url="../bookContents/bookContents?bookId={{item.bookId}}&id={{item.id}}&title={{item.title}}&total={{chapterList.total}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd">
+                <image class="img-label" src="../../../images/biao.png"></image>
+              </view>
+              <view class="weui-cell__bd weui-cell_primary">
+               <view class="title">{{item.title}}</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
-            <text bindtap="spend" data-status="{{item.payStatus}}" data-freeRead="{{item.isFreeRead}}" data-price="{{item.chapterPrice}}" class="fufei {{item.isFreeRead==true?'':'active'}}">{{item.isFreeRead==true?"免费":"请购买"}}</text>
-          </view>
+          </block>
         </view>
-      </block>
-    </scroll-view>
+      </view>
+    </view>
   </view>
-
-  <!--提示付款框-->
-  <action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetbindchange">
-
-    <!--<block wx:for-items="{{actionSheetItems}}">-->
-    <action-sheet-item bindtap="bind{{item.bindtap}}">购买全本</action-sheet-item>
-    <action-sheet-item bindtap="bind{{item.bindtap}}">
-      <image class="bookImg" src="../../../images/beijing1.png"></image>
-      <text class="bookName">本章节
-        <text class="label-price">{{price}}元</text>
-      </text>
-    </action-sheet-item>
-    <action-sheet-item bindtap="bind{{item.bindtap}}">
-      <text class="vouchers">代金券</text>
-      <text class="vouchers-1">无可用</text>
-      <text class="voucher-2">未使用</text>
-    </action-sheet-item>
-    <action-sheet-item bindtap="bind{{item.bindtap}}">
-      <text class="vouchers">账户余额</text>
-      <text class="voucher-2 voucher-3">0.0书豆</text>
-    </action-sheet-item>
-
-    <!--</block>-->
-    <action-sheet-cancel class="cancel">
-      <view class="cancel-tatle">
-        <text>合计 ： </text>
-        <text class="cancel-tatle-p">
-          10书豆
-        </text>
-      </view>
-      <view class="cancel-tatle-c">
-        <text class="cancel-tatle-d" bindtap="reacarge">
-          充值并购买
-        </text>
-      </view>
-    </action-sheet-cancel>
-  </action-sheet>
 
   <!--</view>-->
 </view>

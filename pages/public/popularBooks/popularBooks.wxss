@@ -87,10 +87,10 @@
 
 }
 .book-tag .label{
-    padding:6rpx;
+    padding:5rpx;
     border:1px solid #999;
     color:#999;
-    margin-right:20rpx;
+    margin-right:6rpx;
 }
 .book-tag .items{
      overflow: hidden;

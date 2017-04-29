@@ -27,15 +27,14 @@
     padding-right:20rpx;
 }
 .cover-book-text{
-    display: block;
-    line-height:10rpx;
-    margin-top:35rpx;
+    line-height:50rpx;
 
 }
 .cover-book-titleg{
     color:#242231;
     font-size:36rpx;
-
+    display: block;
+    height:55rpx;
 }
 .label{
     margin-right:10rpx;
@@ -186,7 +185,6 @@
 
  .book-lists{
      margin-left:30rpx;
-     height:100rpx;
      font-size:30rpx;
      
  }
@@ -207,78 +205,4 @@
 
 
 
- /*付款提示款*/
-action-sheet-item{
-     overflow:hidden;
- }
- .bookImg{
-     width:100rpx;
-     height:100rpx;
-     float:left;
-     
- }
- .bookName{
-     float:left;
-     margin-left:27%;
-
- }
- .label-price{
-     color:#999;
- }
- .vouchers-1{
-     color:#fff;
-     background:red;
-     font-size:24rpx;
-     border-radius:2px;
-     margin-top:10rpx;
-     margin-left:10rpx
-
- }
- .voucher-2{
-     color:#999;
-    font-size:24rpx;
-     float:right;
-     margin-right:6rpx;
-      margin-top:10rpx;
- }
- .vouchers{
-     float:left;
-     margin-left:6rpx;
- }
- .vouchers-1{
-     float:left;
- }
- .voucher-3{
-     color:red;
- }
- .cancel{
-     display: block;
-     overflow: hidden;
- }
- .cancel-tatle{
-     width:50%;
-     background:#efefef;
-     text-align: center;
-    float:left;
-     margin-top:26rpx;
- }
- .cancel{
-     height:170rpx;
-     padding:0;
- }
- .cancel-tatle-p{
-    color:#59D6F2;
-    display:inline-block;
-  
-
- }
- .cancel-tatle-c{
-     vertical-align: middle;
-     width:50%;
-      float:left;
-     text-align: center;
-     background: #59D6F2;
-     color:#fff;
-      margin-top:26rpx;
- }
  

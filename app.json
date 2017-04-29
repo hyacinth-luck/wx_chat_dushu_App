@@ -1,8 +1,7 @@
 {
   "pages":[
-     "pages/bookcases/bookcase/bookcase",
+    "pages/finds/find/find",
     "pages/index/index",
-      
 
     "pages/bookcases/bookcase/bookcase",
     "pages/bookcases/create/create",

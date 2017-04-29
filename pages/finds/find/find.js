@@ -289,7 +289,11 @@ Page({
     var searchKeyword = that.data.searchKeyword;
     console.log(searchKeyword)
     that.setData({ searchLoading: true, scrollFlag: false });
-     util.searchBook(searchKeyword,function(res){
+    var params = {};
+    params.keyword = searchKeyword;
+    params.pageNum = 1;
+    params.pageSize = 20;
+     util.searchBook(params,function(res){
        console.log(searchKeyword)
        console.log(res)
        if (res.data) {

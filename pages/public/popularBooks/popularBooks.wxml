@@ -3,7 +3,7 @@
         class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh" > 
 <view class="popularBooks">
     <view class="classname">
-      <block wx:for="{{freeBooks.records}}" wx:key="{{item}}">
+      <block wx:for="{{freeBooks}}" wx:key="{{item}}">
       <navigator url="../bookDetails/bookDetails?page={{freeBooks.pages}}&id={{item.id}}&bookImg={{item.cover}}&desc={{item.intro}}&size={{freeBooks.size}}&total={{freeBooks.total}}&tag={{item.tags}}&title={{item.name}}&authorName={{item.authorName}}&categoryId={{item.categoryId}}">
             <view class="big-wrap">
                <view class="listbook-cove book-cover-label book-cover-label-1">

@@ -45,7 +45,8 @@ function request(url, method, responseHandler) {
             // success
             if (res.httpCode == 401) {/* 未登录 */
                 // 重新登录
-                login.login(responseHandler.success, res);
+                login.login(url,method, responseHandler); // 传递登录前 请求信息, 以便完成授权重新发起请求
+
                 return;
             }
             responseHandler.success(res);
@@ -77,7 +78,8 @@ function _post(url, responseHandler) {
 
 module.exports = {
     get: _get,
-    post: _post
+    post: _post,
+    getAuthToken:getAuthToken
 }
 
 /*

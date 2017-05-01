@@ -25,7 +25,7 @@
     <view class="title-item">
         <image class="img-label" src="../../../images/biao.png" ></image>
         <label>有声专区</label>
-        <view class="more">更多</view>
+        <!--<view class="more">更多</view>-->
     </view>
  </navigator>   
     <view class="list-item">

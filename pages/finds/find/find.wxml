@@ -118,7 +118,7 @@
   </view>
 
   <!--免费阅读-->
-  <navigator url="../../public/popularBooks/popularBooks?id=399&num=3">
+  <navigator url="../../public/popularBooks/popularBooks?id=399&num=1">
     <view class="right-nav">
       <view class="navel-mess mn">
         <text class="nav-h1 fei">免费阅读</text>

@@ -68,21 +68,24 @@ Page({
 
   },
   // 点击阅读下一章
-  nextCapture: function () {
+  nextCapture: function (ev) {
+    console.log(ev)
+     var data=ev.target.dataset;
     if (!this.nextChapter) {
       return;
     }
-    let url = `../bookContents/bookContents?bookId=` + this.nextChapter.bookId + `&id=` + this.nextChapter.id + `&title=` + this.nextChapter.title;
+    let url = `../bookContents/bookContents?bookId=` + this.nextChapter.bookId + `&id=` + this.nextChapter.id + `&title=` + this.nextChapter.title +`&total=` + data.total;
     wx.redirectTo({
       url: url
     })
   },
-  prevCapture: function () {
-
+  prevCapture: function (ev) {
+    console.log(ev)
+     var data=ev.target.dataset;
     if (!this.prevChapter) {
       return;
     }
-    let url = `../bookContents/bookContents?bookId=` + this.prevChapter.bookId + `&id=` + this.prevChapter.id + `&title=` + this.prevChapter.title;
+    let url = `../bookContents/bookContents?bookId=` + this.prevChapter.bookId + `&id=` + this.prevChapter.id + `&title=` + this.prevChapter.title +`&total=` + data.total;
     wx.redirectTo({
       url: url
     })

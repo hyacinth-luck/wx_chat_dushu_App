@@ -461,8 +461,8 @@ function historyBook(callback) {
 
 
 // 书籍详情
-function bookDetail(bookId,callback){
-   httpUtil.get('http://localhost/book/'+bookId+'/info', {
+function bookDetail(bookId, callback) {
+  httpUtil.get('http://localhost/book/' + bookId + '/info', {
     params: {},
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -501,19 +501,39 @@ function bookContent(bookId, chapterId, callback) {
 
 }
 
+// 添加收藏书籍
+function addFavorite(bookId, callback) {
+  httpUtil.get('http://localhost/book/' + bookId + '/favorite/add', {
+    params: {},
+    success: function (res) {
+      if (callback && typeof callback == "function") {
+        callback(res);
+      }
+    }
+  });
+}
+
+// 已经收藏的书籍展示
+function favoriteBook(callback) {
+  httpUtil.get('http://localhost/book/favorite/list', {
+    params: {},
+    success: function (res) {
+      if (callback && typeof callback == "function") {
+        callback(res);
+      }
+    }
+  });
+}
+
 // 懒加载
 var l = [];
 function GetList(that, data, url) {
   that.setData({
     hidden: false
   });
-  console.log(data)
-  var params = {
-    pageNum: data.pageNum,
-    pageSize: data.pageSize,
-    lastRecordId: data.lastRecordId
-  };
-  url(params, function (res) {
+  console.log("#####data:%s", data)
+
+  url(data, function (res) {
     console.log(res)
 
     if (res.data) {
@@ -522,15 +542,20 @@ function GetList(that, data, url) {
       });
 
     }
+
+    //###### 这是在干嘛?
     for (var i = 0; i < res.data.records.length; i++) {
       l.push(res.data.records[i])
     }
+
     res.data.records = l;
+    // 这是在干嘛? #######
     that.setData({
       freeBooks: res.data,
       hidden: true
     });
-    params.pageNum++;
+    console.log("##### WTF %d", data.pageNum++);
+    //data.pageNum++; 
   });
 }
 
@@ -546,6 +571,28 @@ function GetList(that, data, url) {
 
 
 #####################################*/
+
+
+var printLog = function (level, log) {
+  let sty = "";
+  if (level == "err") {
+    sty = "color:red;font-size: 20px;"
+  } else {
+    sty = "color: green:font-size:20px";
+  }
+  let date = new Date();
+  var dateStr = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + (date.getDate());
+  dateStr += " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+  console.log("%c %s %s", sty, "[ " + dateStr + " ]", log);
+};
+
+var printErrLog = function (log) {
+  printLog("err", log)
+};
+
+var printInfoLog = function (log) {
+  printLog("err", log)
+};
 
 module.exports = {
   formatTime: formatTime,
@@ -570,5 +617,12 @@ module.exports = {
   addshelf: addshelf,
   GetList: GetList,
   bookContent: bookContent,
-  bookDetail:bookDetail
+  bookDetail: bookDetail,
+  addFavorite: addFavorite,
+  favoriteBook: favoriteBook,
+
+  printLog: printLog, // log
+  printErrLog: printErrLog, // log
+  printInfoLog: printInfoLog, // log
+
 }

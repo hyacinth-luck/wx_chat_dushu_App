@@ -1,13 +1,11 @@
 {
   "pages":[
-    "pages/finds/find/find",
+    "pages/bookcases/bookcase/bookcase",
     "pages/index/index",
 
     "pages/bookcases/bookcase/bookcase",
     "pages/bookcases/create/create",
-    "pages/bookcases/bookDetails/bookDetails",
-    "pages/bookcases/bookContents/bookContents",
-    "pages/bookcases/bookList/bookList",
+   
 
     "pages/finds/find/find",
     "pages/finds/systematics/systematics",

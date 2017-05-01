@@ -1,5 +1,5 @@
 
-function login(callback, params) {
+function login(url, method, responseHandler) {
     //调用登录接口
 
     wx.login({
@@ -7,7 +7,7 @@ function login(callback, params) {
         success: function (res) {
             console.log("授权code: %s", JSON.stringify(res));
             if (res.code) {
-                loginToServer(res.code, callback)
+                loginToServer(res.code, url, method, responseHandler)
 
                 wx.getUserInfo({
                     success: function (res) {
@@ -23,7 +23,7 @@ function login(callback, params) {
 }
 
 
-function loginToServer(code, callback, params) {
+function loginToServer(code, url, method, responseHandler) {
 
     wx.request({
         url: 'http://localhost/login/wx_mini_program?code=' + code, //仅为示例，并非真实的接口地址
@@ -45,7 +45,40 @@ function loginToServer(code, callback, params) {
                     setAuthToken(authToken);
                 }
 
-                if (callback) callback(params);
+
+                
+                wx.request({
+                    url: url,
+                    data: responseHandler.params,
+                    dataType: 'text', /* 解决id等数值过大被截问题, 字符串*/
+                    header: {
+                        'authToken': getAuthToken(),
+                        "Content-type": "application/x-www-form-urlencoded",
+                    },
+
+                    method: method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                    // header: {}, // 设置请求的 header
+                    success: function (res) {
+                        // console.log("res %s", JSON.stringify(res));
+                        res = handleJson(res.data); /* 解决id等数值过大被截问题 */
+                        // success
+                        if (res.httpCode == 401) {/* 未登录 */
+                            // 重新登录
+                            login.login(url, method, responseHandler);
+
+                            return;
+                        }
+                         responseHandler.success(res);
+                    },
+                    fail: function (res) {
+                        // fail
+                        responseHandler.success(res);
+                    },
+                    complete: function () {
+                        // complete
+                       responseHandler.complete();
+                    }
+                })
             }
         },
     });
@@ -55,6 +88,22 @@ function setAuthToken(authToken) {
 
     wx.setStorageSync('authToken', authToken);
 
+}
+
+function getAuthToken() {
+    return wx.getStorageSync('authToken');
+}
+
+
+function handleJson(jsonStr) {
+    var regP = /"\:\d+\.*\d+/; // "id":82122323232300100200
+    var pattern = new RegExp(regP, "g");
+    var result;
+    while ((result = pattern.exec(jsonStr)) != null) {
+        var matchedBigIntStr = result[0].substr("\":".length);
+        jsonStr = jsonStr.replace(regP, "\":\"" + matchedBigIntStr + "\"");
+    }
+    return JSON.parse(jsonStr);
 }
 
 

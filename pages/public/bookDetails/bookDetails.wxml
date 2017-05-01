@@ -31,7 +31,7 @@
     <!--<navigator url="../bookContents/bookContents?bookId={{item.bookId}}&id={{item.id}}&title={{item.title}}&total={{chapterList.total}}">-->
       <button class="selected select-read" bindtap="startReading" data-total="{{chapterList.total}}" data-bookId="{{options.id}}">开始阅读</button>
     <!--</navigator>-->
-    <button class="selected select-download">离线下载</button>
+    <button class="selected select-download" bindtap="addFavorite" data-num="{{options.total}}" data-bid="{{options.id}}">收藏该书</button>
     <button class="selected select-bookshelf" bindtap="addshelf" data-num="{{options.total}}" data-bid="{{options.id}}">加书架</button>
   </view>
   <view class="introduction">

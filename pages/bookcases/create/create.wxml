@@ -5,7 +5,7 @@
       <view class="create-content">
         <view class="classname">
           <text class="create-label">作品封面：</text>
-          <image name="cover" class="create-fenmian" bindtap="Upload" src="http://pic.motieimg.com/_assets/pic-cover.jpg"></image>
+          <image name="cover" class="create-fenmian" bindtap="Upload" src="{{pic}}"></image>
         </view>
         <view class="create-request">
           <text>

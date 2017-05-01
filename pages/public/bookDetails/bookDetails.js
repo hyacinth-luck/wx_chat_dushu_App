@@ -122,6 +122,21 @@ Page({
     })
 
   },
+  // 收藏该书
+  addFavorite:function(ev){
+    var bookId = ev.target.dataset.bid
+    console.log(ev)
+    util.addFavorite(bookId, function (res) {
+      console.log(res)
+      wx.showToast({
+        title: '收藏成功',
+        icon: 'succes',
+        duration: 1000,
+        mask: true
+      })
+    })
+
+  },
   onReady: function () {
     // 页面渲染完成
   },

@@ -21,27 +21,7 @@ Page({
     searchPageSize: 0, // 每页多少
     searchTotalNum: 0, // 结果总条数
     scrollToView: 'scrollTop', // 返回顶部位置
-    backToTop: false, // 返回顶部
-    imgInfo: [
-      {
-        "imgUrl": "https://gss0.baidu.com/7LsWdDW5_xN3otqbppnN2DJv/doc/abpic/item/a8014c086e061d954024cf7272f40ad162d9ca1e.jpg",
-        "imgTitle": "三生三世十里桃花"
-      }, {
-        "imgUrl": "https://gss0.baidu.com/7LsWdDW5_xN3otqbppnN2DJv/doc/abpic/item/a8014c086e061d954024cf7272f40ad162d9ca1e.jpg",
-        "imgTitle": "三生三世十里桃花"
-      }, {
-        "imgUrl": "https://gss0.baidu.com/7LsWdDW5_xN3otqbppnN2DJv/doc/abpic/item/a8014c086e061d954024cf7272f40ad162d9ca1e.jpg",
-        "imgTitle": "三生三世十里桃花"
-      }, {
-        "imgUrl": "https://gss0.baidu.com/7LsWdDW5_xN3otqbppnN2DJv/doc/abpic/item/a8014c086e061d954024cf7272f40ad162d9ca1e.jpg",
-        "imgTitle": "三生三世十里桃花"
-      }, {
-        "imgUrl": "https://gss0.baidu.com/7LsWdDW5_xN3otqbppnN2DJv/doc/abpic/item/a8014c086e061d954024cf7272f40ad162d9ca1e.jpg",
-        "imgTitle": "三生三世十里桃花"
-      }
-    ]
-
-
+    backToTop: false // 返回顶部
   },
   // 点击申请创建自己的图书
   deitBookshelf: function () {
@@ -51,50 +31,30 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.navigateTo({
-            url: '../create/create',
-            success: function (res) {
-              // success
-            },
-            fail: function (res) {
-              // fail
-            },
-            complete: function (res) {
-              // complete
-            }
+            url: '../create/create'
           })
         }
       }
     })
   },
   onLoad: function () {
-   var that = this;
+    var that = this;
     setTimeout(function () {
       that.setData({
         loadingHidden: true
       })
     }, 1500)
 
-    // 获取最新书籍
-
-
-    
     // 获取书架书籍
     util.shelf(function (res) {
-        console.log(res.data)
+      console.log(res.data)
       that.setData({
-       sheltBooks:res.data
+        sheltBooks: res.data
       })
-      
-    
+
+
 
     })
-
-   
-   
-    //搜索频道 热门搜索
-    util.getHotSearch(function (data) {
-      that.setData({ hotkey: data.data.hotkey, special: data.data.special_key });
-    });
     // 设置search 结果scrollview的高度
     wx.getSystemInfo({
       success: function (res) {
@@ -113,10 +73,6 @@ Page({
           : searchHistorys
       });
     }
-  },
-  // 导航栏操作
-  onNavbarTap: function (ev) {
-    this.setData({ currentTab: ev.currentTarget.dataset.index });
   },
   // 搜索框获取焦点
   onSearchFocus: function (ev) {
@@ -188,26 +144,31 @@ Page({
     }
   },
   // 搜索结果
-  onFetchSearchList: function (searchPageNum) {
+  onFetchSearchList: function () {
     var that = this;
     var searchKeyword = that.data.searchKeyword;
+    console.log(searchKeyword)
     that.setData({ searchLoading: true, scrollFlag: false });
-    util.getSearchMusic(searchKeyword, searchPageNum, function (res) {
-      var res = res.data;
+    var params = {};
+    params.keyword = searchKeyword;
+    params.pageNum = 1;
+    params.pageSize = 20;
+    util.searchBook(params, function (res) {
+      console.log(searchKeyword)
+      console.log(res)
+      if (res.data) {
+        for (var i = 0, n = res.data.records.length; i < n; ++i) {
+          res.data.records[i].tags = res.data.records[i].tags.split(",");
+        }
+      }
       that.setData({
-        booksShow: false,
-        searchSongList: that
-          .data
-          .searchSongList
-          .concat(res.song.list),
-        zhida: res.zhida,
         searchLoading: false,
-        searchPageNum: res.song.curpage,
-        searchTotalNum: res.song.totalnum,
-        searchPageSize: res.song.curnum,
-        scrollFlag: true
-      });
-    });
+        freeBooks: res.data,
+        sortShow: false,
+        scrollFlag: true,
+        booksShow: false
+      })
+    })
   },
   // 删除单条历史记录
   onSearchHistoryDelete: function (ev) {
@@ -267,52 +228,7 @@ Page({
   onBackToTop: function () {
     that.setData({ scrollToView: 'scrollTop', backToTop: false });
   },
-  // 跳转到cdlist
-  onCdlistTap: function (ev) {
-    var that = this;
-    var id = ev.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../cdlist/cdlist?cdListId=' + id
-    });
-  },
-  // 跳到到toplist
-  onToplistTap: function (ev) {
-    var id = ev.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../toplist/toplist?topListId=' + id
-    });
-  },
-  // 热门搜索点击执行搜索
-  onHotkeyTap: function (ev) {
-    var that = this;
-    var word = ev.currentTarget.dataset.text;
-    this.setData({
-      searchSongList: [],
-      searchHotShow: false,
-      searchHistoryShow: false,
-      searchResultShow: true,
-      searchCancelShow: true,
-      searchKeyword: ev
-        .currentTarget
-        .dataset
-        .text
-        .trim(),
-      inputFocus: false
-    });
-    this.onFetchSearchList(1);
-  },
-  // 搜索结果跳到播放页
-  onPlaysongTap: function (ev) {
-    var that = this;
-    app.setGlobalData({ songData: ev.currentTarget.dataset.data });
-    var id = ev.currentTarget.dataset.id;
-    var mid = ev.currentTarget.dataset.mid;
-    var albummid = ev.currentTarget.dataset.albummid;
-    var songFrom = ev.currentTarget.dataset.from;
-    wx.navigateTo({
-      url: '../playsong/playsong?id=' + id + '&mid=' + mid + "&albummid=" + albummid + '&songFrom=' + songFrom
-    });
-  }
+
 
   // }
 })

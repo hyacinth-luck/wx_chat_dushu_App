@@ -21,11 +21,6 @@
 
     <!-- 热门搜索 -->
   <view class="search-hot" wx:if="{{searchHotShow}}">
-    <text class="hot-title">热门搜索</text>
-    <view class="hot-wrap">
-      <text class="hot-item hot">{{special}}</text>
-      <text class="hot-item" wx:for="{{hotkey}}" wx:key="{{item.k}}" data-text="{{item.k}}" bindtap="onHotkeyTap">{{item.k}}</text>
-    </view>
   </view>
 
   <!-- 搜索历史 -->
@@ -45,22 +40,44 @@
   </view>
 
   <!-- 搜索结果 -->
-  <view class="search-result" wx:if="{{searchResultShow&&!searchHotShow&&!searchHistoryShow}}" >
+  <view class="search-result" wx:if="{{searchResultShow&&!searchHotShow&&!searchHistoryShow}}">
     <scroll-view style="height:{{scrollviewH}}px;" scroll-y="true" bindscrolltolower="searchScrollLower" lower-threshold="50" scroll-into-view="{{scrollToView}}" scroll-with-animation="true" enable-back-to-top="true" bindscroll="onScroll" bindscrolltolower="onScrollLower">
-      <view class="result-item" wx:if="{{zhida.type == 2}}">
-        <image class="media" src="https://y.gtimg.cn/music/photo_new/T001R68x68M000{{zhida.singermid}}.jpg"></image>
-        <text class="title">{{zhida.singername}}</text>
-        <view class="subtitle">
-          <text>单曲：{{zhida.songnum}}</text>
-          <text>专辑：{{zhida.albumnum}}</text>
-        </view>
-      </view>
-      <view id="scrollTop" class="result-item" wx:for="{{searchSongList}}" wx:key="{{item.songid}}" data-data="{{item}}"
-        data-id="{{item.songid}}" data-mid="{{item.songmid}}" data-albummid="{{item.albummid}}" data-from="searchlist"  bindtap="onPlaysongTap">
-        <view class="icon {{item.isonly=='0' ? 'nocopyright' : ''}}"></view>
-        <text class="title">{{item.songname}}</text>
-        <view class="subtitle">
-          <text wx:for="{{item.singer}}" wx:key="unique">{{item.name}}</text>
+      <view class="popularBooks">
+        <view class="classname">
+          <view class="classname" style="color:#C5F983;margin-top:40%;text-align:center;" wx:if="{{freeBooks.records.length<1}}">
+          <text style="display:block">不好意思,您搜索的书籍不存在^^</text>
+          <text style="display:block"> 请从新搜索</text>
+          
+          </view>
+          <block  wx:if="{{freeBooks.records.length>0}}" wx:for="{{freeBooks.records}}" wx:key="{{item}}">
+            <navigator url="../../public/bookDetails/bookDetails?page={{freeBooks.pages}}&id={{item.id}}&bookImg={{item.cover}}&desc={{item.intro}}&size={{freeBooks.size}}&total={{freeBooks.total}}&tag={{item.tags}}&title={{item.name}}&authorName={{item.authorName}}&categoryId={{item.categoryId}}">
+              <view class="big-wrap">
+                <view class="listbook-cove book-cover-label book-cover-label-1">
+                  <image class="book-cover-img" src="{{item.cover}}"></image>
+                </view>
+                <view class="listbook-info">
+                  <view class="classname">
+                    <text class="title">{{item.name}}</text>
+                  </view>
+                  <view class="author_wrap">
+                    <view class="authorinfo">
+                      <text class="author">{{item.authorName}}</text>
+                      <view class="view">
+                        <image class="views-img" src="../../../images/eye.png"></image>
+                        <view class="views">{{item.pvCount}}</view>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="book-tag">
+                    <text class="label" style="color:#59D6F2">{{item.finishStatus === 0? '连载' : '完结'}}</text>
+                    <block wx:for="{{item.tags}}">
+                      <text class="label items">{{item}}</text>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+          </block>
         </view>
       </view>
       <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
@@ -68,7 +85,6 @@
       <view class="backToTop" hidden="{{!backToTop}}" catchtap="onBackToTop"></view>
     </scroll-view>
   </view>
-
 </view>
 
 <!--书架排列-->

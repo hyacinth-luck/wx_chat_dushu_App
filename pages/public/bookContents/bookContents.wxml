@@ -10,8 +10,8 @@
   <!--<navigator url="../bookList/bookList?bookId={{options.bookId}}&total={{options.total}}">-->
    <button class="list-btn return" data-bookId="{{options.bookId}}" data-id="{{options.id}}" data-total="{{options.total}}" bindtap='backCaptureList'>返回目录</button>
   <!--</navigator>-->
-  <button class="list-btn next" bindtap="prevCapture">上一章</button>
-  <button class="list-btn next" bindtap="nextCapture">下一章</button>
+  <button class="list-btn next" data-total="{{options.total}}" bindtap="prevCapture">上一章</button>
+  <button class="list-btn next" data-total="{{options.total}}" bindtap="nextCapture">下一章</button>
  
 
 

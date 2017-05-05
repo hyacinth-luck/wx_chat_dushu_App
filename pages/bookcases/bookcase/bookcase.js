@@ -46,14 +46,14 @@ Page({
     }, 1500)
 
     // 获取书架书籍
-    util.shelf({ pageNum: 1, pageSize: 20 }, function (res,url) {
+    util.shelf({ pageNum: 1, pageSize: 20 }, function (res, url) {
       //console.log("书架书籍：%s"res.data)
 
-      util.printInfoLog("书架书籍：" + url);
-
-      that.setData({
-        sheltBooks: res.data
-      })
+      util.printInfoLog("书架书籍：" + (url || ""));
+      if (!url || (url && url.indexOf("shelf") != -1))
+        that.setData({
+          sheltBooks: res.data
+        })
 
 
 

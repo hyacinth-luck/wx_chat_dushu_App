@@ -369,7 +369,7 @@ function getNewestBooks(data, callback) {
     success: function (res) {
       printInfoLog("############### " + res)
       if (callback && typeof callback == "function") {
-        callback(res);
+        callback(res, "book/list/newest");
       }
     }
   });
@@ -428,7 +428,7 @@ function shelf(data, callback) {
     params: data,
     success: function (res) {
       if (callback && typeof callback == "function") {
-        callback(res);
+        callback(res, "book/shelf/list");
       }
     }
   });

@@ -49,6 +49,10 @@ function request(url, method, responseHandler) {
             // success
             if (res.httpCode == 401) {/* 未登录 */
                 // 重新登录
+                // 如果是 newest 则不进行登录 , 麻了歌单
+                if (url.indexOf("newest") != -1) {
+                    return;
+                }
                 var callbackData = { url: url, method: method, responseHandler: responseHandler };
                 login.login(callbackData); // 传递登录前 请求信息, 以便完成授权重新发起请求       
                 return;

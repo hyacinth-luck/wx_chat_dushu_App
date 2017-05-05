@@ -41,7 +41,6 @@ Page({
       },
       function (res) {
         console.log(res)
-        // setTimeout(function () {
           if (res.httpCode == 200) {
             wx.showToast({
               title: '创建作品完成',
@@ -50,29 +49,12 @@ Page({
               mask: true
             });
           };
-        // }, 1000)
         setTimeout(function () {
         wx.switchTab({
-          url: '../bookcase/bookcase',
-          success: function (res) {
-            // success
-          },
-          fail: function (res) {
-            // fail
-          },
-          complete: function (res) {
-            // complete
-          }
-        })
-        }, 1000)
-
-
-
-
+          url: '../bookcase/bookcase'
+        }, 2000)
       })
-
-
-
+  })
   },
   //点击上传图片
   Upload: function () {

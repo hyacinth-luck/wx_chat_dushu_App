@@ -89,10 +89,8 @@
 <view wx:if="{{sortShow}}">
 
   <!--图书分类-->
-  <view class="label-nav">
+  <!--<view class="label-nav">
     <block wx:for="{{modules.content}}" wx:key="{{item}}">
-
-      <!--<navigator url="../systematics/systematics">-->
       <navigator url="../ranking/ranking?">
         <view class="sort">
           <view class="nav-1" style="background:url('{{modules.icon_img_url}}') 0 {{item.icon.y}}rpx;background-size:cover;"></view>
@@ -100,7 +98,7 @@
         </view>
       </navigator>
     </block>
-  </view>
+  </view>-->
 
   <!--热门图书，新书推荐，免费阅读-->
   <view class="left-nav">

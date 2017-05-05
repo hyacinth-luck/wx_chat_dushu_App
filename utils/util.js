@@ -367,6 +367,7 @@ function getNewestBooks(data, callback) {
   httpUtil.post('http://localhost/book/list/newest', {
     params: data,
     success: function (res) {
+      printInfoLog("############### " + res)
       if (callback && typeof callback == "function") {
         callback(res);
       }
@@ -422,9 +423,9 @@ function searchBook(keyword, callback) {
 }
 
 // 书架书籍列表
-function shelf(callback) {
+function shelf(data, callback) {
   httpUtil.post('http://localhost/book/shelf/list', {
-    params: {},
+    params: data,
     success: function (res) {
       if (callback && typeof callback == "function") {
         callback(res);

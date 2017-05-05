@@ -12,12 +12,12 @@
 
 
 <!--图书导航-->
- <view class="nav-content">
+ <!--<view class="nav-content">
         <view class="navImg"  wx:for="{{navImg}}" wx:key="{{item}}">
              <image class="nav-pic" src="{{item.imgUrl}}"></image>
              <text class="nav-txt" >{{item.imgTit}}</text>
         </view>
-</view>
+</view>-->
 
 <!--有声专区-->
 <view class='content-item'>

@@ -24,10 +24,14 @@ function handleJson(jsonStr) {
     return JSON.parse(jsonStr);
 };
 
+var isLoading = 0;
+
 function request(url, method, responseHandler) {
 
     responseHandler = Object.assign(defaultResponseHandler, responseHandler);
 
+    if (isLoading) return;
+    isLoading = 1;
     wx.request({
         url: url,
         data: responseHandler.params,
@@ -45,9 +49,10 @@ function request(url, method, responseHandler) {
             // success
             if (res.httpCode == 401) {/* 未登录 */
                 // 重新登录
-                login.login(url,method, responseHandler); // 传递登录前 请求信息, 以便完成授权重新发起请求
-
+                var callbackData = { url: url, method: method, responseHandler: responseHandler };
+                login.login(callbackData); // 传递登录前 请求信息, 以便完成授权重新发起请求       
                 return;
+
             }
             responseHandler.success(res);
         },
@@ -58,13 +63,18 @@ function request(url, method, responseHandler) {
         complete: function () {
             // complete
             responseHandler.complete();
+            isLoading = 0;
         }
     })
 }
 
 function getAuthToken() {
     // 简单处理,
-    return wx.getStorageSync('authToken');
+    return wx.getStorageSync('authToken') || '';
+}
+
+function setAuthToken(v) {
+    wx.setStorageSync('authToken', v);
 }
 
 
@@ -79,7 +89,7 @@ function _post(url, responseHandler) {
 module.exports = {
     get: _get,
     post: _post,
-    getAuthToken:getAuthToken
+    getAuthToken: getAuthToken
 }
 
 /*

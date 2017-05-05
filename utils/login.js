@@ -1,5 +1,5 @@
 
-function login(url, method, responseHandler) {
+function login(callbackData) {
     //调用登录接口
 
     wx.login({
@@ -7,7 +7,8 @@ function login(url, method, responseHandler) {
         success: function (res) {
             console.log("授权code: %s", JSON.stringify(res));
             if (res.code) {
-                loginToServer(res.code, url, method, responseHandler)
+
+                loginToServer(res.code, callbackData)
 
                 wx.getUserInfo({
                     success: function (res) {
@@ -23,7 +24,7 @@ function login(url, method, responseHandler) {
 }
 
 
-function loginToServer(code, url, method, responseHandler) {
+function loginToServer(code, callbackData) {
 
     wx.request({
         url: 'http://localhost/login/wx_mini_program?code=' + code, //仅为示例，并非真实的接口地址
@@ -46,17 +47,17 @@ function loginToServer(code, url, method, responseHandler) {
                 }
 
 
-                
+
                 wx.request({
-                    url: url,
-                    data: responseHandler.params,
+                    url: callbackData.url,
+                    data: callbackData.responseHandler.params,
                     dataType: 'text', /* 解决id等数值过大被截问题, 字符串*/
                     header: {
                         'authToken': getAuthToken(),
                         "Content-type": "application/x-www-form-urlencoded",
                     },
 
-                    method: method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                    method: callbackData.method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                     // header: {}, // 设置请求的 header
                     success: function (res) {
                         // console.log("res %s", JSON.stringify(res));
@@ -64,19 +65,19 @@ function loginToServer(code, url, method, responseHandler) {
                         // success
                         if (res.httpCode == 401) {/* 未登录 */
                             // 重新登录
-                            login.login(url, method, responseHandler);
+                            login.login(callbackData);
 
                             return;
                         }
-                         responseHandler.success(res);
+                        callbackData.responseHandler.success(res, callbackData.url);
                     },
                     fail: function (res) {
                         // fail
-                        responseHandler.success(res);
+                        callbackData.responseHandler.fail(res);
                     },
                     complete: function () {
                         // complete
-                       responseHandler.complete();
+                        callbackData.responseHandler.complete();
                     }
                 })
             }

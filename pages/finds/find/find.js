@@ -99,7 +99,7 @@ Page({
       header: { 'accept': 'application/json' }, // 设置请求的 header
       success: function (res) {
         // success
-        console.log(res.data.data.module[0])
+        console.log("shuxin-----------:",res)
         that.setData({
           fines: res.data.data.module[0]
         })
@@ -133,12 +133,13 @@ Page({
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       header: { 'accept': 'application/json' }, // 设置请求的 header
       success: function (res) {
+        console.log('res++++++++++++girl:',res)
         // success
         that.setData({
           modules: res.data.data.module,
-          girls: res.data.data.module[4],
-          boys: res.data.data.module[9],
-          fine: res.data.data.module[1]
+          girls: res.data.data.module[5],
+          boys: res.data.data.module[0],
+          fines: res.data.data.module[0]
         });
 
       },
@@ -186,10 +187,10 @@ Page({
       // header: {}, // 设置请求的 header
       success: function (res) {
         var num = 0;//数据处理
-        for (var i = 0; i < res.data.data.module[1].content.length; i++) {
-          res.data.data.module[1].content[i].icon.y = num * 100;
-          num = num + 1;
-        }
+        // for (var i = 0; i < res.data.data.module[1].content.length; i++) {
+        //   res.data.data.module[1].content[i].icon.y = num * 100;
+        //   num = num + 1;
+        // }
         // success
         that.setData({
           modules: res.data.data.module[1],

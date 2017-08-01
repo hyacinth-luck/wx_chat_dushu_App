@@ -1,5 +1,7 @@
 var httpUtil = require("HttpUtil.js");
 
+const HOST = "10.116.167.13";
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -335,7 +337,7 @@ function getSongInfo(id, mid, callback) {
 
 // 免费书籍列表
 function freeBook(data, callback) {
-  httpUtil.get('http://localhost/book/list/free', {
+  httpUtil.get(`http://${HOST}/book/list/free`, {
     params: data,
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -349,7 +351,7 @@ function freeBook(data, callback) {
 
 // 书籍章节列表
 function bookCaptures(bookId, data, callback) {
-  httpUtil.get('http://localhost/book/' + bookId + '/chapter/list', {
+  httpUtil.get(`http://${HOST}/book/` + bookId + '/chapter/list', {
     params: data,
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -364,7 +366,8 @@ function bookCaptures(bookId, data, callback) {
  */
 // 最新书籍列表
 function getNewestBooks(data, callback) {
-  httpUtil.post('http://localhost/book/list/newest', {
+
+  httpUtil.post(`http://${HOST}/book/list/newest`, {
     params: data,
     success: function (res) {
       printInfoLog("############### " + res)
@@ -376,7 +379,7 @@ function getNewestBooks(data, callback) {
 }
 // 创建图书
 function createBook(data, callback) {
-  httpUtil.post('http://localhost/book/create', {
+  httpUtil.post(`http://${HOST}/book/create`, {
     params: data,
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -395,7 +398,7 @@ function createBook(data, callback) {
  */
 function createBooks(data, bookId, callback) {
 
-  httpUtil.post('http://localhost/book/' + bookId + '/chapter/create', {
+  httpUtil.post(`http://${HOST}/book/` + bookId + '/chapter/create', {
     params: data,
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -411,7 +414,7 @@ function createBooks(data, bookId, callback) {
 
 // 关键字搜索图书
 function searchBook(keyword, callback) {
-  httpUtil.get('http://localhost/book/list/search', {
+  httpUtil.get(`http://${HOST}/book/list/search`, {
     params: keyword,
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -424,7 +427,7 @@ function searchBook(keyword, callback) {
 
 // 书架书籍列表
 function shelf(data, callback) {
-  httpUtil.post('http://localhost/book/shelf/list', {
+  httpUtil.post(`http://${HOST}/book/shelf/list`, {
     params: data,
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -436,7 +439,7 @@ function shelf(data, callback) {
 
 // 添加到书架
 function addshelf(bookId, callback) {
-  httpUtil.get('http://localhost/book/' + bookId + '/add-to-shelf', {
+  httpUtil.get(`http://${HOST}/book/` + bookId + '/add-to-shelf', {
     params: {},
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -449,7 +452,7 @@ function addshelf(bookId, callback) {
 
 // 书籍的阅读历史
 function historyBook(callback) {
-  httpUtil.get('http://localhost/book/history/list', {
+  httpUtil.get(`http://${HOST}/book/history/list`, {
     params: {},
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -463,7 +466,7 @@ function historyBook(callback) {
 
 // 书籍详情
 function bookDetail(bookId, callback) {
-  httpUtil.get('http://localhost/book/' + bookId + '/info', {
+  httpUtil.get(`http://${HOST}/book/` + bookId + '/info', {
     params: {},
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -491,7 +494,7 @@ function getAuthToken() {
 
 // 书籍正文内容
 function bookContent(bookId, chapterId, callback) {
-  httpUtil.get('http://localhost/book/' + bookId + '/chapter/' + chapterId + '/content', {
+  httpUtil.get(`http://${HOST}/book/` + bookId + '/chapter/' + chapterId + '/content', {
     params: {},
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -504,7 +507,7 @@ function bookContent(bookId, chapterId, callback) {
 
 // 添加收藏书籍
 function addFavorite(bookId, callback) {
-  httpUtil.get('http://localhost/book/' + bookId + '/favorite/add', {
+  httpUtil.get(`http://${HOST}/book/` + bookId + '/favorite/add', {
     params: {},
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -516,7 +519,7 @@ function addFavorite(bookId, callback) {
 
 // 已经收藏的书籍展示
 function favoriteBook(callback) {
-  httpUtil.get('http://localhost/book/favorite/list', {
+  httpUtil.get(`http://${HOST}/book/favorite/list`, {
     params: {},
     success: function (res) {
       if (callback && typeof callback == "function") {
@@ -565,7 +568,7 @@ function GetList(that, data, url) {
 /* ################################
 
 !function importFromQidian(bookListUrl) {
-  httpUtil.post("http://localhost/book/import-from-qidian", { params: { bookListUrl: bookListUrl } }
+  httpUtil.post("http://${HOST}/book/import-from-qidian", { params: { bookListUrl: bookListUrl } }
   )
 }("http://f.qidian.com/all?size=-1&sign=-1&tag=-1&chanId=4&subCateId=-1&orderId=5&update=-1&page=1&month=-1&style=1&action=-1");
 

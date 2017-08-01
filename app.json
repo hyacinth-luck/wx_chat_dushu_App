@@ -1,12 +1,10 @@
 {
   "pages":[
-    "pages/bookcases/bookcase/bookcase",
     "pages/index/index",
 
-    
+    "pages/bookcases/bookcase/bookcase",
     "pages/bookcases/create/create",
    
-
     "pages/finds/find/find",
     "pages/finds/systematics/systematics",
     "pages/finds/ranking/ranking",

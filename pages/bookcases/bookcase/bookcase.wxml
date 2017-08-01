@@ -44,13 +44,13 @@
     <scroll-view style="height:{{scrollviewH}}px;" scroll-y="true" bindscrolltolower="searchScrollLower" lower-threshold="50" scroll-into-view="{{scrollToView}}" scroll-with-animation="true" enable-back-to-top="true" bindscroll="onScroll" bindscrolltolower="onScrollLower">
       <view class="popularBooks">
         <view class="classname">
-          <view class="classname" style="color:#C5F983;margin-top:40%;text-align:center;" wx:if="{{freeBooks.records.length<1}}">
+          <view class="classname" style="color:#C5F983;margin-top:40%;text-align:center;" wx:if="{{searchBooks.records.length<1}}">
           <text style="display:block">不好意思,您搜索的书籍不存在^^</text>
           <text style="display:block"> 请从新搜索</text>
           
           </view>
-          <block  wx:if="{{freeBooks.records.length>0}}" wx:for="{{freeBooks.records}}" wx:key="{{item}}">
-            <navigator url="../../public/bookDetails/bookDetails?page={{freeBooks.pages}}&id={{item.id}}&bookImg={{item.cover}}&desc={{item.intro}}&size={{freeBooks.size}}&total={{freeBooks.total}}&tag={{item.tags}}&title={{item.name}}&authorName={{item.authorName}}&categoryId={{item.categoryId}}">
+          <block  wx:if="{{searchBooks.records.length>0}}" wx:for="{{searchBooks.records}}" wx:key="{{item}}">
+            <navigator url="../../public/bookDetails/bookDetails?page={{searchBooks.pages}}&id={{item.id}}&bookImg={{item.cover}}&desc={{item.intro}}&size={{searchBooks.size}}&total={{searchBooks.total}}&tag={{item.tags}}&title={{item.name}}&authorName={{item.authorName}}&categoryId={{item.categoryId}}">
               <view class="big-wrap">
                 <view class="listbook-cove book-cover-label book-cover-label-1">
                   <image class="book-cover-img" src="{{item.cover}}"></image>

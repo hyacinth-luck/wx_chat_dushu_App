@@ -61,10 +61,11 @@
  }
  .list-number{
      margin-right:30rpx;
-     max-width: 40%;
+     max-width: 77%;
      overflow: hidden;
      text-overflow: ellipsis;
      white-space: nowrap;
+     display: block;
  }
 
 

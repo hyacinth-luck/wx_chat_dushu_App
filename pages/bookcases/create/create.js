@@ -30,7 +30,7 @@ Page({
     console.log(formData)
     util.createBook(
       {
-        categoryId: '856071846034817024',
+        categoryId: '860364129404076032',
         name: formData.booktitle,
         authorName: formData.authorName,
         intro: formData.introduction,

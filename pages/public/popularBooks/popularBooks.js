@@ -5,19 +5,14 @@ Page({
   data: {
     hidden: true,
     freeBooks: [],
-
     //pageNum: 1,
     params: {
       pageNum: 1,
       pageSize: 10,
       lastRecordId: 0
     },
-
-
     scrollHeight: 0,
     options: {},
-
-
     isLoading: false
 
 
